@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Response;
 
 class GroupController extends Controller
 {
@@ -19,7 +20,11 @@ class GroupController extends Controller
     {
 
         // not a good approach to display data , just temporary
-        return Group::all();
+        $groups = Group::all();
+
+        return Response::json([
+            'data' => $groups->toArray()
+        ], 200);
     }
 
     /**
@@ -51,7 +56,20 @@ class GroupController extends Controller
      */
     public function show($id)
     {
-        //
+        $groups = Group::find($id);
+
+        if ( ! $groups )
+        {
+            return Response::json([
+                'error' => [
+                    'message' => 'Group does not exist',
+                ]
+            ], 404);
+        }
+
+        return Response::json([
+            'data' => $groups->toArray()
+        ], 200); 
     }
 
     /**
