@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Group;
+use App\Transformers\GroupTransformer;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -18,13 +19,9 @@ class GroupController extends Controller
      */
     public function index()
     {
-
-        // not a good approach to display data , just temporary
         $groups = Group::all();
 
-        return Response::json([
-            'data' => $groups->toArray()
-        ], 200);
+        return $this->response->collection($groups, new GroupTransformer);
     }
 
     /**
@@ -67,9 +64,7 @@ class GroupController extends Controller
             ], 404);
         }
 
-        return Response::json([
-            'data' => $groups->toArray()
-        ], 200);
+        return $this->response->item($groups, new GroupTransformer);
     }
 
     /**
