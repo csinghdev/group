@@ -69,7 +69,7 @@ class GroupController extends Controller
 
         return Response::json([
             'data' => $groups->toArray()
-        ], 200); 
+        ], 200);
     }
 
     /**
