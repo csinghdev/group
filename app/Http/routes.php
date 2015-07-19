@@ -15,4 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('groups', 'GroupController');
+Route::group(['prefix' => 'api'], function() {
+    Route::resource('groups', 'GroupController');
+});
+

@@ -21,13 +21,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GroupsTableSeeder.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/database/seeds/GroupsTableSeeder.php">
+      <file leaf-file-name="GroupController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GroupController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17589577">
-              <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.46905538">
+              <caret line="20" column="63" selection-start-line="20" selection-start-column="63" selection-end-line="20" selection-end-column="63" />
               <folding>
-                <element signature="e#7#21#0#PHP" expanded="true" />
+                <element signature="e#40#54#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -38,7 +38,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_07_15_162714_create_groups_table.php" />
         <option value="$PROJECT_DIR$/.env" />
@@ -50,6 +49,8 @@
         <option value="$PROJECT_DIR$/app/Group.php" />
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/GroupsTableSeeder.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/GroupController.php" />
       </list>
     </option>
   </component>
@@ -282,7 +283,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.47211415" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47211415" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -318,22 +319,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
           <folding>
-            <marker date="1436977395114" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder=" Display a listing of the resource. ..." />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder=" Show the form for creating a new resource. ..." />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder=" Store a newly created resource in storage. ..." />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder=" Display the specified resource. ..." />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder=" Show the form for editing the specified resource. ..." />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder=" Update the specified resource in storage. ..." />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder=" Remove the specified resource from storage. ..." />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <element signature="e#40#54#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -351,13 +337,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23300971">
-          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -444,31 +423,6 @@
             <marker date="1435775405000" expanded="true" signature="-1:-1" placeholder="[...]" />
             <marker date="1435775405000" expanded="true" signature="-1:-1" placeholder="[...]" />
             <marker date="1435775405000" expanded="true" signature="-1:-1" placeholder="{&quot;preferred-install&quot;: &quot;dist&quot;...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GroupController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40228012">
-          <caret line="59" column="29" selection-start-line="59" selection-start-column="29" selection-end-line="59" selection-end-column="29" />
-          <folding>
-            <marker date="1436977395114" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder=" Display a listing of the resource. ..." />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder=" Show the form for creating a new resource. ..." />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder=" Store a newly created resource in storage. ..." />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder=" Display the specified resource. ..." />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder=" Show the form for editing the specified resource. ..." />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder=" Update the specified resource in storage. ..." />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder=" Remove the specified resource from storage. ..." />
-            <marker date="1436977395114" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -1120,10 +1074,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/GroupsTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17589577">
-          <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.61563516">
+          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
           <folding>
-            <element signature="e#7#21#0#PHP" expanded="true" />
+            <marker date="1437315281995" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437315281995" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437315281995" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437315281995" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437315281995" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437315281995" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35179153">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <marker date="1437315762139" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1437315762139" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437315762139" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437315762139" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437315762139" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GroupController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46905538">
+          <caret line="20" column="63" selection-start-line="20" selection-start-column="63" selection-end-line="20" selection-end-column="63" />
+          <folding>
+            <element signature="e#40#54#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
