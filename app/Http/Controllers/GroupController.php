@@ -57,11 +57,7 @@ class GroupController extends Controller
 
         if ( ! $groups )
         {
-            return Response::json([
-                'error' => [
-                    'message' => 'Group does not exist',
-                ]
-            ], 404);
+            return $this->respondNotFound('Group does not exist');
         }
 
         return $this->response->item($groups, new GroupTransformer);
