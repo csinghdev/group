@@ -20,7 +20,6 @@ abstract class Controller extends BaseController
     function __construct(Larasponse $response)
     {
         $this->response = $response;
-
         if(Input::has('includes'))
         {
             $this->response->parseIncludes(Input::get('includes'));
