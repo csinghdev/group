@@ -19,6 +19,9 @@ class GroupController extends Controller
      */
     public function index()
     {
+        // temporary authentication
+        $this->middleware('jwt.auth');
+
         $groups = Group::all();
 
         return $this->response->collection($groups, new GroupTransformer);
@@ -53,6 +56,9 @@ class GroupController extends Controller
      */
     public function show($id)
     {
+        // temporary authentication
+        $this->middleware('jwt.auth');
+
         $groups = Group::find($id);
 
         if ( ! $groups )

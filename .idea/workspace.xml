@@ -21,14 +21,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AuthenticateController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AuthenticateController.php">
+      <file leaf-file-name="GroupController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GroupController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.55737704">
-              <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-              <folding>
-                <element signature="e#40#53#0#PHP" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.44262296">
+              <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -52,13 +50,13 @@
         <option value="$PROJECT_DIR$/app/Transformers/GroupTransformer.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/GroupController.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AuthenticateController.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/GroupController.php" />
       </list>
     </option>
   </component>
@@ -345,7 +343,22 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="69" column="13" selection-start-line="69" selection-start-column="12" selection-end-line="69" selection-end-column="13" />
           <folding>
-            <element signature="e#40#53#0#PHP" expanded="true" />
+            <marker date="1437580457002" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder=" Apply the jwt.auth middleware to all methods in this controller except authenticate method. ..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder=" Display a all user after authorization. ..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -387,25 +400,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding>
-            <marker date="1437490623869" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Display a listing of the resource. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Show the form for creating a new resource. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Store a newly created resource in storage. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Display the specified resource. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Show the form for editing the specified resource. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Update the specified resource in storage. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Remove the specified resource from storage. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -413,25 +408,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-          <folding>
-            <marker date="1437490623869" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Display a listing of the resource. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Show the form for creating a new resource. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Store a newly created resource in storage. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Display the specified resource. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Show the form for editing the specified resource. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Update the specified resource in storage. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Remove the specified resource from storage. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -587,13 +564,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/jwt.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.3102407">
-          <caret line="159" column="10" selection-start-line="159" selection-start-column="10" selection-end-line="159" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41042346">
@@ -606,32 +576,6 @@
         <state vertical-scroll-proportion="0.5863192">
           <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GroupController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70846903">
-          <caret line="65" column="7" selection-start-line="65" selection-start-column="7" selection-end-line="65" selection-end-column="7" />
-          <folding>
-            <marker date="1437490623869" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Display a listing of the resource. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Show the form for creating a new resource. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Store a newly created resource in storage. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Display the specified resource. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Show the form for editing the specified resource. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Update the specified resource in storage. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder=" Remove the specified resource from storage. ..." />
-            <marker date="1437490623869" expanded="true" signature="-1:-1" placeholder="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -701,25 +645,74 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4397394">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.47213113">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
-            <marker date="1437579723118" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1437579723118" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437579723118" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437579723118" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1437579723118" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437580653102" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1437580653102" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437580653102" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437580653102" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437580653102" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/jwt.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29508197">
+          <caret line="10" column="71" selection-start-line="10" selection-start-column="71" selection-end-line="10" selection-end-column="71" />
+          <folding>
+            <marker date="1437412568790" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437412568790" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437412568790" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437412568790" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437412568790" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437412568790" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437412568790" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437412568790" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437412568790" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437412568790" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437412568790" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437412568790" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437412568790" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437412568790" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437412568790" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437412568790" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437412568790" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AuthenticateController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55737704">
-          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.53114754">
+          <caret line="22" column="41" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
           <folding>
-            <element signature="e#40#53#0#PHP" expanded="true" />
+            <marker date="1437580457002" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder=" Apply the jwt.auth middleware to all methods in this controller except authenticate method. ..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder=" Display a all user after authorization. ..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1437580457002" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GroupController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44262296">
+          <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
