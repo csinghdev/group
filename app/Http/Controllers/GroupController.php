@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 
 class GroupController extends Controller
@@ -28,25 +29,23 @@ class GroupController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Create a new group and store it in DB.
+     * group_name is compulsary and description is optional.
      *
      * @param  Request  $request
      * @return Response
      */
     public function store(Request $request)
     {
-        //
+        if ( ! Input::get('group_name'))
+        {
+            return $this->respondValidationFailed('Parameters failed validation for a group');
+        }
+        Group::create(Input::all());
+
+        return $this->respondCreated('Group successfully created.');
     }
+
 
     /**
      * Display the specified resource.
@@ -92,14 +91,4 @@ class GroupController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
