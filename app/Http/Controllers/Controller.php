@@ -99,8 +99,6 @@ abstract class Controller extends BaseController
      */
     public function respondValidationFailed($message)
     {
-        return $this->setStatusCode(422)->respondWithError([
-                'message' => $message
-        ]);
+        return $this->setStatusCode(422)->respondWithError($message);
     }
 }
