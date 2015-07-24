@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         DB::statement("SET foreign_key_checks = 0");
 
         Group::truncate();
+        User::truncate();
         DB::table('group_user')->truncate();
 
        // DB::statement("SET foreign_key_checks = 1");
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         $this->call(GroupsTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
         $this->call(GroupUserTableSeeder::class);
 
 

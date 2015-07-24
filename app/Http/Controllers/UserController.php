@@ -2,23 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Group;
+use App\Transformers\UserTransformer;
 use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
+     * Display all users that belongs to a Group.
      *
-     * @return Response
+     * @param $group_id
+     * @return array
      */
-    public function index()
+    public function index($group_id = null)
     {
-        //
+        if ( ! Group::find($group_id) )
+        {
+            return $this->setStatusCode(404)->respondWithError('No users exists in this group.');
+        }
+
+        $users = $this->getUsers($group_id);
+
+        return $this->response->collection($users, new UserTransformer);
     }
 
     /**
@@ -123,5 +133,14 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * @param $user_id
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function getUsers($group_id)
+    {
+        return $group_id ? Group::findOrFail($group_id)->users : User::all();
     }
 }
