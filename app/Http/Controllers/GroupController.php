@@ -14,15 +14,20 @@ use Illuminate\Support\Facades\Response;
 class GroupController extends Controller
 {
     /**
+     * Authenticate user except for store method.
+     */
+    public function __construct()
+    {
+        $this->middleware('jwt.auth', ['except' => ['store']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return Response
      */
     public function index()
     {
-        // temporary authentication
-        $this->middleware('jwt.auth');
-
         $groups = Group::all();
 
         return $this->response->collection($groups, new GroupTransformer);
