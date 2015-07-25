@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\Response;
 class GroupController extends Controller
 {
     /**
-     * Authenticate user except for store method.
+     * Remove this, not working
      */
-    public function __construct()
-    {
-        $this->middleware('jwt.auth', ['except' => ['store']]);
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('jwt.auth', ['except' => ['store']]);
+//    }
 
     /**
      * Display a listing of the resource.
@@ -28,9 +28,11 @@ class GroupController extends Controller
      */
     public function index()
     {
-        $groups = Group::all();
+        $limit = Input::get('limit') ? : 3;
 
-        return $this->response->collection($groups, new GroupTransformer);
+        $groups = Group::paginate($limit);
+
+        return $this->response->paginatedCollection($groups, new GroupTransformer);
     }
 
     /**
