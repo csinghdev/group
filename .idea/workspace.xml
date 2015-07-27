@@ -22,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PostController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PostController.php">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8233439">
-              <caret line="35" column="7" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.10892587">
+              <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -42,7 +42,6 @@
         <option value="$PROJECT_DIR$/database/migrations/2015_07_16_155240_create_admins_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_07_16_160118_create_like_post_table.php" />
         <option value="$PROJECT_DIR$/app/Transformers/GroupTransformer.php" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
@@ -66,6 +65,7 @@
         <option value="$PROJECT_DIR$/database/migrations/2015_07_16_152327_create_posts_table.php" />
         <option value="$PROJECT_DIR$/app/Transformers/PostTransformer.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/PostController.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -596,13 +596,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11707317">
-          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2931596">
@@ -940,6 +933,33 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8233439">
           <caret line="35" column="7" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
+          <folding>
+            <marker date="1438011428126" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1438011428126" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1438011428126" expanded="true" signature="-1:-1" placeholder=" Display a listing of the resource. ..." />
+            <marker date="1438011428126" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1438011428126" expanded="true" signature="-1:-1" placeholder="//..." />
+            <marker date="1438011428126" expanded="true" signature="-1:-1" placeholder="//..." />
+            <marker date="1438011428126" expanded="true" signature="-1:-1" placeholder=" Show the form for creating a new resource. ..." />
+            <marker date="1438011428126" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1438011428126" expanded="true" signature="-1:-1" placeholder=" Store a newly created resource in storage. ..." />
+            <marker date="1438011428126" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1438011428126" expanded="true" signature="-1:-1" placeholder=" Display the specified resource. ..." />
+            <marker date="1438011428126" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1438011428126" expanded="true" signature="-1:-1" placeholder=" Show the form for editing the specified resource. ..." />
+            <marker date="1438011428126" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1438011428126" expanded="true" signature="-1:-1" placeholder=" Update the specified resource in storage. ..." />
+            <marker date="1438011428126" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1438011428126" expanded="true" signature="-1:-1" placeholder=" Remove the specified resource from storage. ..." />
+            <marker date="1438011428126" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10892587">
+          <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
           <folding />
         </state>
       </provider>
