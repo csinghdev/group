@@ -21,6 +21,8 @@ Route::group(['prefix' => 'api'], function() {
 
     Route::resource('groups', 'GroupController', ['only' => ['index', 'show', 'store', 'update']]);
 
+    Route::get('groups/{id}/posts', 'PostController@index');
+
     Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
     Route::post('authenticate', 'AuthenticateController@authenticate');
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
