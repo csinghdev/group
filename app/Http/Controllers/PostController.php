@@ -33,7 +33,7 @@ class PostController extends Controller
 
     /**
      * Get all posts of a group.
-     * 
+     *
      * @param $group_id
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
