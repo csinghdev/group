@@ -8,7 +8,7 @@ class Post extends Model
 {
     protected $fillable = ['title', 'content', 'user_id'];
 
-    public function posts()
+    public function group()
     {
         return $this->belongsTo(Group::class);
     }

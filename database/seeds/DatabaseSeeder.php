@@ -1,6 +1,7 @@
 <?php
 
 use App\Group;
+use App\Post;
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
@@ -18,6 +19,8 @@ class DatabaseSeeder extends Seeder
 
         Group::truncate();
         User::truncate();
+        Post::truncate();
+
         DB::table('group_user')->truncate();
 
        // DB::statement("SET foreign_key_checks = 1");
@@ -27,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GroupsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(GroupUserTableSeeder::class);
+        $this->call(PostTableSeeder::class);
 
 
         Model::reguard();
