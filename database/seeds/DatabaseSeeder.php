@@ -1,5 +1,6 @@
 <?php
 
+use App\Comment;
 use App\Group;
 use App\Post;
 use App\User;
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
         Group::truncate();
         User::truncate();
         Post::truncate();
+        Comment::truncate();
 
         DB::table('group_user')->truncate();
 
@@ -31,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(GroupUserTableSeeder::class);
         $this->call(PostTableSeeder::class);
+        $this->call(CommentsTableSeeder::class);
 
 
         Model::reguard();

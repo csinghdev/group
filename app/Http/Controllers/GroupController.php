@@ -77,7 +77,7 @@ class GroupController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     *update
      * @param  Request  $request
      * @param  int  $id
      * @return Response
