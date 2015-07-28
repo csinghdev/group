@@ -65,18 +65,33 @@ class PostController extends Controller
 
 
     /**
-     * Display posts of user of a group.
+     * Show all posts of a user of a group.
+     *
      * @param null $group_id
-     * @param $user
-     * @return array
+     * @param $user_id
+     * @return array|mixed
      */
-    public function show($group_id = null, $user)
+    public function show($group_id = null, $user_id)
     {
-        // not recommended way to use relationship
-        // show only those posts which are created by user of this group only
-        $user_posts = Post::where("user_id", "=", $user )->get();
+        if ( ! Group::find($group_id) or ! User::find($user_id) )
+        {
+            return $this->setStatusCode(404)->respondWithError('No such post exists.');
+        }
+
+        $user_posts = $this->getUserPosts($user_id);
 
         return $this->response->collection($user_posts, new PostTransformer);
+    }
+
+    /**
+     * Get all posts of a user of a group.
+     *
+     * @param $user_id
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function getUserPosts($user_id)
+    {
+        return $user_id ? User::findOrFail($user_id)->posts : Post::all();
     }
 
     /**
