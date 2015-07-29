@@ -84,7 +84,18 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $group = Group::find($id);
+
+        if($group)
+        {
+            $group->description = $request->description;
+
+            if( ! $group->save() )
+            {
+                return $this->setStatusCode('500')->respondWithError('Unable to save description.');
+            }
+        }
+        return $this->respond('Successfully updated description.');
     }
 
 }
