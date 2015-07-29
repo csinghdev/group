@@ -5,8 +5,9 @@ use League\Fractal\TransformerAbstract;
 
 class PostTransformer extends TransformerAbstract {
 
-    public function transform(Post $post) {
+    protected $defaultIncludes = ['comments'];
 
+    public function transform(Post $post) {
         return [
             'id' => (int)$post->id,
             'title' => $post->title,
@@ -15,5 +16,10 @@ class PostTransformer extends TransformerAbstract {
             'group_id' => $post->group_id,
             'user_id' => $post->user_id,
         ];
+    }
+
+    public function includeComments(Post $post)
+    {
+        return $this->collection($post->comments, new CommentTransformer);
     }
 }

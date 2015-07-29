@@ -9,8 +9,8 @@ class CommentTransformer extends TransformerAbstract {
 
         return [
             'id' => (int)$comment->id,
-            'comment' => $comment->comment,
             'user_id' => $comment->user_id,
+            'comment' => $comment->comment,
         ];
     }
 }
