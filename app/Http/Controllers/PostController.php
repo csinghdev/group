@@ -84,14 +84,25 @@ class PostController extends Controller
         return $user_id ? User::findOrFail($user_id)->posts : Post::all();
     }
 
+
     /**
-     * Remove the specified resource from storage.
+     * Delete a post.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Request $request
+     * @return mixed
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $group_id = $request->group_id;
+        if ( ! Group::find($group_id) )
+        {
+            return $this->setStatusCode(404)->respondWithError('Group not found.');
+        }
+        $post_id = $request->post_id;
+        $post = Post::find($post_id);
+        if ( $post->delete() )
+        {
+            return $this->respond("Post successfully deleted");
+        }
     }
 }
