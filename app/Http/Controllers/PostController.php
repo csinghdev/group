@@ -10,9 +10,16 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class PostController extends Controller
 {
+
+//    public function __construct()
+//    {
+//        $this->middleware('jwt.auth', ['except' => ['index']]);
+//    }
 
     /**
      * Display all posts of a group.
@@ -50,7 +57,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // Post::create($request);
+        if ( ! Input::get('title') or ! Input::get('content'))
+        {
+            return $this->respondValidationFailed('Title or content missing.');
+        }
+
+        $user_id = JWTAuth::parseToken()->authenticate()->id;
+        $group_id = User::findOrFail($user_id)->groups->lists('id')->first();
+
+        Post::create(Input::all() + array(
+            'user_id' => $user_id,
+            'group_id' => $group_id
+        ));
+
+        return $this->respondCreated('Post successfully created.');
     }
 
 
@@ -94,12 +114,16 @@ class PostController extends Controller
     public function destroy(Request $request)
     {
         $group_id = $request->group_id;
+        $post_id = $request->post_id;
         if ( ! Group::find($group_id) )
         {
             return $this->setStatusCode(404)->respondWithError('Group not found.');
         }
-        $post_id = $request->post_id;
         $post = Post::find($post_id);
+        if ( ! $post )
+        {
+            return $this->setStatusCode(404)->respondWithError('Post not found.');
+        }
         if ( $post->delete() )
         {
             return $this->respond("Post successfully deleted");

@@ -26,6 +26,7 @@ Route::group(['prefix' => 'api'], function() {
     Route::get('groups/{id}/posts', 'PostController@index');
     Route::get('groups/{id}/posts/{user}', 'PostController@show');
     Route::post('groups/posts/delete', 'PostController@destroy');
+    Route::post('groups/posts/create', 'PostController@store');
 
     Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
     Route::post('authenticate', 'AuthenticateController@authenticate');
