@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\Transformers\GroupTransformer;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class GroupController extends Controller
 {
@@ -28,11 +30,19 @@ class GroupController extends Controller
      */
     public function index()
     {
-        $limit = Input::get('limit') ? : 3;
+//        $limit = Input::get('limit') ? : 3;
+//
+//        $groups = Group::paginate($limit);
+        $user_id = JWTAuth::parseToken()->authenticate()->id;
+        
+        $groups = $user_id ? User::findOrFail($user_id)->groups : Group::all();
 
-        $groups = Group::paginate($limit);
+        if( ! $groups )
+        {
+            return $this->setStatusCode(404)->respondWithError('Group not found');
+        }
 
-        return $this->response->paginatedCollection($groups, new GroupTransformer);
+        return $this->response->Collection($groups, new GroupTransformer);
     }
 
     /**
