@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Hash;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
@@ -21,7 +22,11 @@ class UserController extends Controller
      */
     public function index($group_id = null)
     {
-        if ( ! Group::find($group_id) )
+        $user_id = JWTAuth::parseToken()->authenticate()->id;
+
+        $group = User::findOrFail($user_id)->groups->find($group_id);
+
+        if ( ! $group )
         {
             return $this->setStatusCode(404)->respondWithError('No users exists in this group.');
         }
@@ -45,31 +50,7 @@ class UserController extends Controller
                 'last_name' => 'Singh',
                 'email' => 'max@gmail.com',
                 'password' => Hash::make('maxmax')],
-            ['username' => 'Chris Sevilleja',
-                'first_name' => 'Chris',
-                'last_name' => 'Sevilleja',
-                'email' => 'max2@gmail.com'
-                , 'password' => Hash::make('maxmax')],
-            ['username' => 'Holly Lloyd',
-                'first_name' => 'Holly',
-                'last_name' => 'Lloyd',
-                'email' => 'max3@gmail.com'
-                , 'password' => Hash::make('maxmax')],
-            ['username' => 'Adnan Kukic',
-                'first_name' => 'Adnan',
-                'last_name' => 'Kukic',
-                'email' => 'max4@gmail.com'
-                , 'password' => Hash::make('maxmax')],
-            ['username' => 'Adnan Sevilleja',
-                'first_name' => 'Adnan',
-                'last_name' => 'Sevilleja',
-                'email' => 'max5@gmail.com'
-                , 'password' => Hash::make('maxmax')],
-            ['username' => 'Adnan Chenkie',
-                'first_name' => 'Adnan',
-                'last_name' => 'Chenkie',
-                'email' => 'max6@gmail.com'
-                , 'password' => Hash::make('maxmax')],
+
         );
 
         foreach ($users as $user)

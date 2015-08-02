@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Sorskod\Larasponse\Larasponse;
 
+
 abstract class Controller extends BaseController
 {
     use DispatchesJobs, ValidatesRequests;

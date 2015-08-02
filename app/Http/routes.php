@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'api'], function() {
     Route::get('groups/{id}/users', 'UserController@index');
     Route::resource('users', 'UserController', ['only' => ['store']]);
+    Route::get('users/{group}', 'UserController@index');
 
     Route::resource('groups', 'GroupController', ['only' => ['index', 'store', 'update']]);
 
