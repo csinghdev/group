@@ -34,7 +34,7 @@ class GroupController extends Controller
 //
 //        $groups = Group::paginate($limit);
         $user_id = JWTAuth::parseToken()->authenticate()->id;
-        
+
         $groups = $user_id ? User::findOrFail($user_id)->groups : Group::all();
 
         if( ! $groups )
@@ -70,20 +70,20 @@ class GroupController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
-    {
-        // temporary authentication
-        $this->middleware('jwt.auth');
-
-        $groups = Group::find($id);
-
-        if ( ! $groups )
-        {
-            return $this->respondNotFound('Group does not exist');
-        }
-
-        return $this->response->item($groups, new GroupTransformer);
-    }
+//    public function show($id)
+//    {
+//        // temporary authentication
+//        $this->middleware('jwt.auth');
+//
+//        $groups = Group::find($id);
+//
+//        if ( ! $groups )
+//        {
+//            return $this->respondNotFound('Group does not exist');
+//        }
+//
+//        return $this->response->item($groups, new GroupTransformer);
+//    }
 
     /**
      * Update the specified resource in storage.
@@ -94,7 +94,11 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $group = Group::find($id);
+        $user_id = JWTAuth::parseToken()->authenticate()->id;
+
+        $group = User::findOrFail($user_id)->groups->find($id);
+
+        //$group = Group::find($id);
 
         if($group)
         {
@@ -104,6 +108,10 @@ class GroupController extends Controller
             {
                 return $this->setStatusCode('500')->respondWithError('Unable to save description.');
             }
+        }
+        else
+        {
+            return $this->setStatusCode(404)->respondWithError('Group Not Found');
         }
         return $this->respond('Successfully updated description.');
     }
