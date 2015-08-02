@@ -38,7 +38,7 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created User in storage.
      *
      * @param  Request  $request
      * @return Response

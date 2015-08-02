@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Sorskod\Larasponse\Larasponse;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 
 abstract class Controller extends BaseController

@@ -9,7 +9,6 @@ use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -29,9 +28,13 @@ class PostController extends Controller
      */
     public function index($group_id = null)
     {
-        if ( ! Group::find($group_id) )
+        $user_id = JWTAuth::parseToken()->authenticate()->id;
+
+        $group = User::findOrFail($user_id)->groups->find($group_id);
+
+        if ( ! $group )
         {
-            return $this->setStatusCode(404)->respondWithError('No such group exists.');
+            return $this->setStatusCode(404)->respondWithError('Group not found.');
         }
         $posts = $this->getPosts($group_id);
 
@@ -55,15 +58,20 @@ class PostController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $group_id = null)
     {
+        $user_id = JWTAuth::parseToken()->authenticate()->id;
+        $group = User::findOrFail($user_id)->groups->find($group_id);
+
+        if( ! $group )
+        {
+            return $this->setStatusCode(404)->respondWithError('Group not found.');
+        }
+
         if ( ! Input::get('title') or ! Input::get('content'))
         {
             return $this->respondValidationFailed('Title or content missing.');
         }
-
-        $user_id = JWTAuth::parseToken()->authenticate()->id;
-        $group_id = User::findOrFail($user_id)->groups->lists('id')->first();
 
         Post::create(Input::all() + array(
             'user_id' => $user_id,
@@ -83,9 +91,24 @@ class PostController extends Controller
      */
     public function show($group_id = null, $user_id)
     {
+        $user = JWTAuth::parseToken()->authenticate()->id;
+        $group = User::findOrFail($user)->groups->find($group_id);
+
+        if( ! $group )
+        {
+            return $this->setStatusCode(404)->respondWithError('Group not found.');
+        }
+
+        $otherUser = Group::findOrFail($group_id)->users->find($user_id);
+
+        if( ! $otherUser )
+        {
+            return $this->setStatusCode(404)->respondWithError('User not found.');
+        }
+
         if ( ! Group::find($group_id) or ! User::find($user_id) )
         {
-            return $this->setStatusCode(404)->respondWithError('No such post exists.');
+            return $this->setStatusCode(404)->respondWithError('Post not found.');
         }
 
         $user_posts = $this->getUserPosts($user_id);
@@ -115,11 +138,16 @@ class PostController extends Controller
     {
         $group_id = $request->group_id;
         $post_id = $request->post_id;
-        if ( ! Group::find($group_id) )
+
+        $user_id = JWTAuth::parseToken()->authenticate()->id;
+        $group = User::findOrFail($user_id)->groups->find($group_id);
+
+        if( ! $group )
         {
             return $this->setStatusCode(404)->respondWithError('Group not found.');
         }
-        $post = Post::find($post_id);
+        $post = User::findOrFail($user_id)->posts->find($post_id);
+
         if ( ! $post )
         {
             return $this->setStatusCode(404)->respondWithError('Post not found.');
