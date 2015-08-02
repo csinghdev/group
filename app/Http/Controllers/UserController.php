@@ -9,13 +9,14 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
 
     /**
-     * Display all users that belongs to a Group.
+     * Display all users that belongs to a Group of authenticated user.
      *
      * @param $group_id
      * @return array
@@ -44,21 +45,29 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $users = array(
-            ['username' => 'Max Singh',
-                'first_name' => 'Max',
-                'last_name' => 'Singh',
-                'email' => 'max@gmail.com',
-                'password' => Hash::make('maxmax')],
-
-        );
-
-        foreach ($users as $user)
+        if ( ! Input::get('username') or ! Input::get('email') or ! Input::get('password') or ! Input::get('first_name') or ! Input::get('last_name'))
         {
-            User::create($user);
+            return $this->respondValidationFailed('Required fields missing.');
         }
 
-        return User::all();
+        User::create(array(
+            'username' => Input::get('username'),
+            'email' => Input::get('email'),
+            'first_name' => Input::get('first_name'),
+            'last_name' => Input::get('last_name'),
+            'password' => Hash::make(Input::get('password'))
+        ));
+//        $users = array(
+//            ['username' => 'Max Singh',
+//                'first_name' => 'Max',
+//                'last_name' => 'Singh',
+//                'email' => 'max@gmail.com',
+//                'password' => Hash::make('maxmax')],
+//
+//        );
+
+
+        return $this->respondCreated('User successfully created.');
     }
 
     /**
