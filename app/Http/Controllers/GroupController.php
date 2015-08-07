@@ -33,13 +33,13 @@ class GroupController extends Controller
 //        $limit = Input::get('limit') ? : 3;
 //
 //        $groups = Group::paginate($limit);
-        $user_id = JWTAuth::parseToken()->authenticate()->id;
+        $user_id = $this->getAuthUserId();
 
         $groups = $user_id ? User::findOrFail($user_id)->groups : Group::all();
 
         if( ! $groups )
         {
-            return $this->setStatusCode(404)->respondWithError('Group not found');
+            return $this->respondGroupValidationFailed();
         }
 
         return $this->response->Collection($groups, new GroupTransformer);
@@ -47,7 +47,6 @@ class GroupController extends Controller
 
     /**
      * Create a new group and store it in DB.
-     * group_name is compulsary and description is optional.
      *
      * @param  Request  $request
      * @return Response
@@ -58,7 +57,12 @@ class GroupController extends Controller
         {
             return $this->respondValidationFailed('Parameters failed validation for a group');
         }
-        Group::create(Input::all());
+
+        $group = Group::create(Input::all());
+
+        $user_id = $this->getAuthUserId();
+
+        $group->users()->attach($user_id);
 
         return $this->respondCreated('Group successfully created.');
     }
@@ -94,9 +98,7 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user_id = JWTAuth::parseToken()->authenticate()->id;
-
-        $group = User::findOrFail($user_id)->groups->find($id);
+        $group = $this->getAuthUserGroup($id);
 
         //$group = Group::find($id);
 
@@ -111,7 +113,7 @@ class GroupController extends Controller
         }
         else
         {
-            return $this->setStatusCode(404)->respondWithError('Group Not Found');
+            return $this->respondGroupValidationFailed();
         }
         return $this->respond('Successfully updated description.');
     }

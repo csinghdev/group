@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
@@ -70,6 +69,8 @@ class UserController extends Controller
     }
 
     /**
+     * Get users of provided groupId.
+     *
      * @param $group_id
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */

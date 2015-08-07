@@ -134,6 +134,6 @@ abstract class Controller extends BaseController
      */
     public function respondGroupValidationFailed()
     {
-        return $this->setStatusCode(404)->respondWithError('User Not Found.');
+        return $this->setStatusCode(404)->respondWithError('Group Not Found.');
     }
 }
