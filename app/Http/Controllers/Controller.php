@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -102,5 +103,37 @@ abstract class Controller extends BaseController
     public function respondValidationFailed($message)
     {
         return $this->setStatusCode(422)->respondWithError($message);
+    }
+
+    /**
+     * Get Authenticated User Id.
+     *
+     * @return mixed
+     */
+    public function getAuthUserId()
+    {
+        return JWTAuth::parseToken()->authenticate()->id;
+    }
+
+    /**
+     * Get groups of Authenticated User.
+     *
+     * @param $group_id
+     * @return mixed
+     */
+    public function getAuthUserGroup($group_id)
+    {
+        $user_id = $this->getAuthUserId();
+        return User::findOrFail($user_id)->groups->find($group_id);
+    }
+
+    /**
+     * Error message if User does not belong to Group.
+     *
+     * @return mixed
+     */
+    public function respondGroupValidationFailed()
+    {
+        return $this->setStatusCode(404)->respondWithError('User Not Found.');
     }
 }

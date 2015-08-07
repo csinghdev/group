@@ -23,19 +23,18 @@ class UserController extends Controller
      */
     public function index($group_id = null)
     {
-        $user_id = JWTAuth::parseToken()->authenticate()->id;
-
-        $group = User::findOrFail($user_id)->groups->find($group_id);
+        $group = $this->getAuthUserGroup($group_id);
 
         if ( ! $group )
         {
-            return $this->setStatusCode(404)->respondWithError('No users exists in this group.');
+            return $this->respondGroupValidationFailed();
         }
 
         $users = $this->getUsers($group_id);
 
         return $this->response->collection($users, new UserTransformer);
     }
+
 
     /**
      * Store a newly created User in storage.
