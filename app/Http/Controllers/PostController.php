@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -37,6 +38,12 @@ class PostController extends Controller
             return $this->setStatusCode(404)->respondWithError('Group not found.');
         }
         $posts = $this->getPosts($group_id);
+
+//        $likes = [];
+//        foreach($posts->lists('id') as $pid) {
+//            $likes += DB::table('like_post')->where('post_id', $pid)->lists('post_id','user_id');
+//        }
+//        dd($likes);
 
         return $this->response->collection($posts, new PostTransformer);
     }
