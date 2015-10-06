@@ -23,6 +23,7 @@ Route::group(['prefix' => 'api'], function() {
     Route::resource('groups', 'GroupController', ['only' => ['index', 'store', 'update']]);
 
     Route::get('posts/{id}/comments', 'CommentController@index');
+    Route::post('posts/{id}/comments', 'CommentController@store');
 
     Route::get('groups/{id}/posts', 'PostController@index');
     Route::get('groups/{id}/posts/{user}', 'PostController@show');

@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class CommentController extends Controller
 {
@@ -24,7 +26,7 @@ class CommentController extends Controller
     {
         if ( ! Post::find($post_id) )
         {
-            return $this->setStatusCode(404)->respondWithError('No such post exists.');
+            return $this->setStatusCode(404)->respondWithError('Post not found.');
         }
         $comments = $this->getComments($post_id);
 
@@ -48,9 +50,27 @@ class CommentController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $post_id = null)
     {
-        //
+        $user_id = JWTAuth::parseToken()->authenticate()->id;
+        $post = Post::find($post_id);
+
+        if( ! $post )
+        {
+            return $this->setStatusCode(404)->respondWithError('Post not found.');
+        }
+
+        if ( ! Input::get('comment'))
+        {
+            return $this->respondValidationFailed('Content missing.');
+        }
+
+        Comment::create(Input::all() + array(
+                'user_id' => $user_id,
+                'post_id' => $post_id
+            ));
+
+        return $this->respondCreated('Comment successfully posted.');
     }
 
 }
