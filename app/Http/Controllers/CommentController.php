@@ -24,6 +24,9 @@ class CommentController extends Controller
      */
     public function index( $post_id = null )
     {
+        // Authenticating user.
+        JWTAuth::parseToken()->authenticate()->id;
+
         if ( ! Post::find($post_id) )
         {
             return $this->setStatusCode(404)->respondWithError('Post not found.');
