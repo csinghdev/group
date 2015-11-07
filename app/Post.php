@@ -33,9 +33,14 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function likes()
+    public function attachments()
     {
-        return $this->belongsToMany(User::class, 'like_post');
+        return $this->hasMany(Attachment::class);
     }
+
+    //public function likes()
+    //{
+    //    return $this->belongsToMany(User::class, 'like_post');
+    //}
 
 }

@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PostTableSeeder::class);
         $this->call(CommentsTableSeeder::class);
         $this->call(LikePostTableSeeder::class);
+        $this->call(AttachmentTableSeeder::class);
 
 
         Model::reguard();
