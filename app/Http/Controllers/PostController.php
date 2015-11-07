@@ -44,9 +44,14 @@ class PostController extends Controller
 //            $likes += DB::table('like_post')->where('post_id', $pid)->lists('post_id','user_id');
 //        }
 //        dd($likes);
+        dd($posts[1]->user_id);
+
+        //$likes = Post::findOrFail(1)->likes;
+        //dd($likes->count());
 
         return $this->response->collection($posts, new PostTransformer);
     }
+
 
     /**
      * Get all posts of a group.
@@ -134,6 +139,21 @@ class PostController extends Controller
         return $user_id ? User::findOrFail($user_id)->posts : Post::all();
     }
 
+//    public function post($group_id = null, $post_id)
+//    {
+//        $user = JWTAuth::parseToken()->authenticate()->id;
+//        $group = User::findOrFail($user)->groups->find($group_id);
+//
+//        if( ! $group )
+//        {
+//            return $this->setStatusCode(404)->respondWithError('Group not found.');
+//        }
+//
+//        $post = $post_id ? Post::findOrFail($post_id)->posts : Post::all();
+//        dd($post);
+//
+//        return $this->response->collection($post, new PostTransformer);
+//    }
 
     /**
      * Delete a post.
