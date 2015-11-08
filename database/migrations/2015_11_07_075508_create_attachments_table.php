@@ -20,13 +20,13 @@ class CreateAttachmentsTable extends Migration
         if(App::environment() === "local")
         {
             // If its on local use the local filesystem
-            $this->filesystem = new Filesystem(new Adapter( public_path() ));
+            $this->filesystem = new Filesystem(new Adapter( public_path() . '/files/'));
         }
         else
         {
             // Use dropbox on other cases,
             $client = new Client(Config::get('dropbox.token'), Config::get('dropbox.appName'));
-            $this->filesystem = new Filesystem(new Dropbox($client));
+            $this->filesystem = new Filesystem(new Dropbox($client, '/files/'));
 
         }
 
@@ -45,7 +45,7 @@ class CreateAttachmentsTable extends Migration
         Schema::create('attachments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('post_id')->unsigned();
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->string('url')->unique();
             $table->timestamps();
 

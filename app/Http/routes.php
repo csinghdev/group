@@ -31,6 +31,8 @@ Route::group(['prefix' => 'api'], function() {
     Route::post('groups/posts/delete', 'PostController@destroy');
     Route::post('groups/{id}/posts/create', 'PostController@store');
 
+    Route::post('post/{post_id}/attachment', 'AttachmentsController@store');
+
     Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
     Route::post('authenticate', 'AuthenticateController@authenticate');
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
