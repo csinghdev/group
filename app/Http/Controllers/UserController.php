@@ -55,15 +55,6 @@ class UserController extends Controller
             'last_name' => Input::get('last_name'),
             'password' => Hash::make(Input::get('password'))
         ));
-//        $users = array(
-//            ['username' => 'Max Singh',
-//                'first_name' => 'Max',
-//                'last_name' => 'Singh',
-//                'email' => 'max@gmail.com',
-//                'password' => Hash::make('maxmax')],
-//
-//        );
-
 
         return $this->respondCreated('User successfully created.');
     }
