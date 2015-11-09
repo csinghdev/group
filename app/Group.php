@@ -27,4 +27,9 @@ class Group extends Model
     {
         return $this->hasMany(Post::class);
     }
+
+    public function admin()
+    {
+        return $this->hasOne(User::class);
+    }
 }

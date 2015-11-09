@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdminsTable extends Migration
+class CreateUnverifiedUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,21 +12,19 @@ class CreateAdminsTable extends Migration
      */
     public function up()
     {
-        Schema::create('admins', function (Blueprint $table) {
+        Schema::create('unverified_users', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('group_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->string('email', 50);
+            $table->string('message', 250);
+            $table->string('verification_code',20);
+            $table->timestamps();
         });
 
-        Schema::table('admins', function (Blueprint $table) {
+        Schema::table('unverified_users', function (Blueprint $table) {
             $table->foreign('group_id')
-                  ->references('id')
-                  ->on('groups')
-                  ->onDelete('cascade');
-
-            $table->foreign('user_id')
                 ->references('id')
-                ->on('users')
+                ->on('groups')
                 ->onDelete('cascade');
         });
     }
@@ -38,6 +36,6 @@ class CreateAdminsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('admins');
+        Schema::drop('unverified_users');
     }
 }

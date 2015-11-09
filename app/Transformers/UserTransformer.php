@@ -13,6 +13,7 @@ class UserTransformer extends TransformerAbstract {
             'first_name' => $user->first_name,
             'last_name' => $user->last_name,
             'email' => $user->email,
+            'image_url' => $user->image_url,
             'user_verified' => (boolean)$user->user_verified
         ];
     }

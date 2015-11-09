@@ -24,7 +24,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $fillable = ['username', 'email', 'password', 'first_name', 'last_name', 'user_verified', 'image_url'];
+    protected $fillable = ['username', 'email', 'password', 'first_name', 'last_name', 'user_verified', 'image_url', 'confirmation_code'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -46,5 +46,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function groups()
     {
         return $this->belongsToMany(Group::class);
+    }
+
+    public function group_admin()
+    {
+        return $this->belongsTo(Group::class);
     }
 }

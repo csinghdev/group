@@ -14,7 +14,9 @@ class AttachmentTableSeeder extends Seeder
 
     public function __construct(){
         if(App::environment() === "local"){
-            $this->filesystem = new Filesystem(new Adapter( public_path() . '/files/'));
+            //$this->filesystem = new Filesystem(new Adapter( public_path() . '/files/'));
+            $client = new Client(Config::get('dropbox.token'), Config::get('dropbox.appName'));
+            $this->filesystem = new Filesystem(new Dropbox($client, '/files'));
         }
         else
         {

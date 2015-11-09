@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Input;
 
 use Dropbox\Client;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Mail;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Dropbox\DropboxAdapter as Dropbox;
 
@@ -57,28 +58,25 @@ class UserController extends Controller
         $image_url = null;
         if ($image)
         {
-            $client = new Client(Config::get('dropbox.token'), Config::get('dropbox.appName'));
-            $this->filesystem = new Filesystem(new Dropbox($client, '/user_image'));
-
-            $url = str_random(20) . "." . $image->getClientOriginalExtension();
-
-            try{
-                $this->filesystem->write($url, file_get_contents($image));
-            }catch (\Dropbox\Exception $e){
-                echo $e->getMessage();
-            }
-
-            $image_url = $url;
+            $image_url = $this->saveImage($image);
         }
 
+        $confirmation_code = str_random(8);
         User::create(array(
             'username' => Input::get('username'),
             'email' => Input::get('email'),
             'first_name' => Input::get('first_name'),
             'last_name' => Input::get('last_name'),
             'password' => Hash::make(Input::get('password')),
-            'image_url' => $image_url
+            'image_url' => $image_url,
+            'confirmation_code' => $confirmation_code
         ));
+
+        Mail::queue('emails.verify', ['confirmation_code' => $confirmation_code, 'username' => Input::get('username'), 'email' => Input::get('email')], function($message) {
+            $message->to(Input::get('email'), Input::get('username'))
+                ->subject('Verify your email address');
+        });
+
 
         return $this->respondCreated('User successfully created.');
     }
@@ -92,5 +90,26 @@ class UserController extends Controller
     public function getUsers($group_id)
     {
         return $group_id ? Group::findOrFail($group_id)->users : User::all();
+    }
+
+    /**
+     * @param $image
+     * @return string
+     */
+    public function saveImage($image)
+    {
+        $client = new Client(Config::get('dropbox.token'), Config::get('dropbox.appName'));
+        $this->filesystem = new Filesystem(new Dropbox($client, '/user_image'));
+
+        $url = str_random(20) . "." . $image->getClientOriginalExtension();
+
+        try {
+            $this->filesystem->write($url, file_get_contents($image));
+            return $url;
+        } catch (\Dropbox\Exception $e) {
+            echo $e->getMessage();
+        }
+
+        return $url;
     }
 }
