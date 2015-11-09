@@ -63,7 +63,7 @@ class AttachmentsController extends Controller
         }
 
         $attachment = $post_id ? Post::findOrFail($post_id)->attachments : Attachment::all();
-      
+
         if( ! $attachment )
         {
             return $this->setStatusCode(404)->respondWithError('Attachment not found.');
@@ -94,7 +94,12 @@ class AttachmentsController extends Controller
 
         $file = $request->file('file');
 
-        $url = str_random(30) . "." . $file->getClientOriginalExtension();
+        if (!$file)
+        {
+            return $this->respondWithError("Attachment not found");
+        }
+
+        $url = str_random(20) . "." . $file->getClientOriginalExtension();
 
         try{
             $this->filesystem->write($url, file_get_contents($file));
@@ -111,15 +116,4 @@ class AttachmentsController extends Controller
         return $this->respondCreated('Attachment successfully uploaded.');
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

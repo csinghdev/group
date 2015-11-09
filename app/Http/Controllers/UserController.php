@@ -11,9 +11,14 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 
+use Dropbox\Client;
+use Illuminate\Support\Facades\Config;
+use League\Flysystem\Filesystem;
+use League\Flysystem\Dropbox\DropboxAdapter as Dropbox;
+
 class UserController extends Controller
 {
-
+    private $filesystem;
     /**
      * Display all users that belongs to a Group of authenticated user.
      *
@@ -48,12 +53,31 @@ class UserController extends Controller
             return $this->respondValidationFailed('Required fields missing.');
         }
 
+        $image = $request->file('image');
+        $image_url = null;
+        if ($image)
+        {
+            $client = new Client(Config::get('dropbox.token'), Config::get('dropbox.appName'));
+            $this->filesystem = new Filesystem(new Dropbox($client, '/user_image'));
+
+            $url = str_random(20) . "." . $image->getClientOriginalExtension();
+
+            try{
+                $this->filesystem->write($url, file_get_contents($image));
+            }catch (\Dropbox\Exception $e){
+                echo $e->getMessage();
+            }
+
+            $image_url = $url;
+        }
+
         User::create(array(
             'username' => Input::get('username'),
             'email' => Input::get('email'),
             'first_name' => Input::get('first_name'),
             'last_name' => Input::get('last_name'),
-            'password' => Hash::make(Input::get('password'))
+            'password' => Hash::make(Input::get('password')),
+            'image_url' => $image_url
         ));
 
         return $this->respondCreated('User successfully created.');
