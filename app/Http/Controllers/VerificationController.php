@@ -20,25 +20,27 @@ class VerificationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function unverified_users_list()
+    public function accept_invitation()
     {
         //
     }
 
 
-    public function add_user($group_id = null, $email_id = null)
+    public function invite_user($group_id = null, $email_id = null)
     {
         $user_id = $this->getAuthUserId();
-        $admin_id = Group::findOrFail($group_id)->admin_id;
+        $group = Group::findOrFail($group_id);
+        $admin_id = $group->admin_id;
         if( $user_id != $admin_id )
         {
-            return $this->respondWithMessage('User is not admin.');
+            return $this->respondWithMessage('Logged in user is not admin.');
         }
+        $user = User::findOrFail($user_id);
 
         $user_list = Verification::whereEmail($email_id)->first();
         if($user_list)
         {
-            return $this->respondWithMessage('User already added.');
+            return $this->respondWithMessage('User already invited.');
         }
 
         Verification::create(array(
@@ -46,7 +48,17 @@ class VerificationController extends Controller
                 'email' => $email_id
             ));
 
-        return $this->respondCreated('User successfully added to list.');
+        $user_details = ['confirmation_code' => $group->unique_code,
+            'username' => $user->username,
+            'email' => $email_id,
+            'group_name' => $group->group_name];
+
+        Mail::queue('emails.addUser', $user_details, function ($message) use ($user_details){
+            $message->to($user_details['email'], $user_details['username'])
+                ->subject('Verify your email address');
+        });
+
+        return $this->respondCreated('User successfully invited.');
     }
 
     /**
