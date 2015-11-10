@@ -40,6 +40,6 @@ Route::group(['prefix' => 'api'], function() {
 
     Route::get('register/{email_id}/verify/{c_code}', 'VerificationController@verify');
     Route::get('register/resend/{email_id}', 'VerificationController@resend_code');
-    Route::post('groups/{group_id}/add_user', 'VerificationController@add_user');
+    Route::get('groups/{group_id}/add/{email_id}', 'VerificationController@add_user');
 });
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\User;
+use App\Verification;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -24,25 +25,36 @@ class VerificationController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function add_user(Request $request, $group_id = null)
-    {
-        //$user_id = JWTAuth::parseToken()->authenticate()->id;
 
-        $admin_id = Group::findOrFail(5)->admin();
-        dd($admin_id);
-        if( $admin_id )
+    public function add_user($group_id = null, $email_id = null)
+    {
+        $user_id = $this->getAuthUserId();
+        $admin_id = Group::findOrFail($group_id)->admin_id;
+        if( $user_id != $admin_id )
         {
-            return $this->setStatusCode(404)->respondWithError('User is admin');
+            return $this->respondWithMessage('User is not admin.');
         }
-        return $this->setStatusCode(404)->respondWithError('User is not admin.');
+
+        $user_list = Verification::whereEmail($email_id)->first();
+        if($user_list)
+        {
+            return $this->respondWithMessage('User already added.');
+        }
+
+        Verification::create(array(
+                'group_id' => $group_id,
+                'email' => $email_id
+            ));
+
+        return $this->respondCreated('User successfully added to list.');
     }
 
+    /**
+     * Resend Confirmation Code to Registered Users.
+     *
+     * @param null $email_id
+     * @return mixed
+     */
     public function resend_code($email_id = null)
     {
         $user = User::whereEmail($email_id)->first();
@@ -68,6 +80,13 @@ class VerificationController extends Controller
         return $this->respondWithMessage("Mail successfully sent.");
     }
 
+    /**
+     * Verify User with a valid Confirmation Code.
+     *
+     * @param null $email_id
+     * @param null $c_code
+     * @return mixed
+     */
     public function verify($email_id = null, $c_code = null)
     {
         if (!$email_id or !$c_code)
