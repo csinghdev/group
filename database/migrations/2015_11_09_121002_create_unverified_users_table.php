@@ -16,8 +16,6 @@ class CreateUnverifiedUsersTable extends Migration
             $table->increments('id');
             $table->integer('group_id')->unsigned();
             $table->string('email', 50);
-            $table->string('message', 250);
-            $table->string('verification_code',20);
             $table->timestamps();
         });
 

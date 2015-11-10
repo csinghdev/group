@@ -24,7 +24,7 @@ class GroupController extends Controller
 //    }
 
     /**
-     * Display a listing of the resource.
+     * Display group details to authenticated user.
      *
      * @return Response
      */
@@ -53,14 +53,19 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = $this->getAuthUserId();
+
         if ( ! Input::get('group_name'))
         {
             return $this->respondValidationFailed('Parameters failed validation for a group');
         }
 
-        $group = Group::create(Input::all());
-
-        $user_id = $this->getAuthUserId();
+        $group = Group::create(array(
+            'group_name' => Input::get('group_name'),
+            'description' => Input::get('description'),
+            'unique_code' => str_random(8),
+            'admin_id' => $user_id
+        ));
 
         $group->users()->attach($user_id);
 

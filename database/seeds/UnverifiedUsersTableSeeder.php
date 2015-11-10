@@ -24,8 +24,6 @@ class UnverifiedUsersTableSeeder extends Seeder
             Verification::create([
                 'group_id' => $faker->randomElement($group_id),
                 'email' => $faker->email,
-                'message' => $faker->sentence(10),
-                'verification_code' => $faker->word,
             ]);
         }
     }

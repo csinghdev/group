@@ -15,7 +15,9 @@ class GroupsTableSeeder extends Seeder {
             Group::create([
 
                 'group_name' => $faker->sentence(3),
-                'description' => $faker->sentence(10)
+                'description' => $faker->sentence(10),
+                'unique_code' => str_random(8),
+                'admin_id' => $index
             ]);
         }
     }
