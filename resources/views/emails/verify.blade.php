@@ -9,7 +9,7 @@
 <div>
     Thanks for creating an account on MyGroup.<br>
     Please follow the link below to verify your email address
-    {{ URL::to('register/verify/'. $email . '/' . $confirmation_code) }}.<br/>
+    {{ URL::to('register/'. $email . '/verify/' . $confirmation_code) }}.<br/>
 </div>
 
 </body>

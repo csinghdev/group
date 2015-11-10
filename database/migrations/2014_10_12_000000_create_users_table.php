@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('last_name', 45);
             $table->string('image_url', 50)->nullable();
             $table->string('confirmation_code')->nullable();
-            $table->boolean('user_verified')->default(false);
+            $table->boolean('user_verified')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -95,6 +95,17 @@ abstract class Controller extends BaseController
         ]);
     }
 
+    /**
+     * @param $message
+     * @return mixed
+     */
+    public function respondWithMessage($message)
+    {
+        return $this->setStatusCode(200)->respond([
+            'message' => $message
+        ]);
+    }
+
 
     /**
      * @param $message

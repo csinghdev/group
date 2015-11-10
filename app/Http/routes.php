@@ -38,6 +38,8 @@ Route::group(['prefix' => 'api'], function() {
     Route::post('authenticate', 'AuthenticateController@authenticate');
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
 
+    Route::get('register/{email_id}/verify/{c_code}', 'VerificationController@verify');
+    Route::get('register/resend/{email_id}', 'VerificationController@resend_code');
     Route::post('groups/{group_id}/add_user', 'VerificationController@add_user');
 });
 
