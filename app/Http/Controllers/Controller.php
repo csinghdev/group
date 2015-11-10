@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 use Sorskod\Larasponse\Larasponse;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -147,4 +148,5 @@ abstract class Controller extends BaseController
     {
         return $this->setStatusCode(404)->respondWithError('Group Not Found.');
     }
+
 }

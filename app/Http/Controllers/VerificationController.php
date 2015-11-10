@@ -38,8 +38,15 @@ class VerificationController extends Controller
         $user = User::findOrFail($user_id);
 
         $user_list = Verification::whereEmail($email_id)->first();
+
+        $user_details = ['confirmation_code' => $group->unique_code,
+            'username' => $user->username,
+            'email' => $email_id,
+            'group_name' => $group->group_name];
+
         if($user_list)
         {
+            $this->send_invitation($user_details);
             return $this->respondWithMessage('User already invited.');
         }
 
@@ -48,15 +55,7 @@ class VerificationController extends Controller
                 'email' => $email_id
             ));
 
-        $user_details = ['confirmation_code' => $group->unique_code,
-            'username' => $user->username,
-            'email' => $email_id,
-            'group_name' => $group->group_name];
-
-        Mail::queue('emails.addUser', $user_details, function ($message) use ($user_details){
-            $message->to($user_details['email'], $user_details['username'])
-                ->subject('Verify your email address');
-        });
+        $this->send_invitation($user_details);
 
         return $this->respondCreated('User successfully invited.');
     }
@@ -125,6 +124,18 @@ class VerificationController extends Controller
         $user->save();
 
         return $this->respondCreated("User successfully verified.");
+    }
+
+
+    /**
+     * @param $user_details
+     */
+    public function send_invitation($user_details)
+    {
+        Mail::queue('emails.addUser', $user_details, function ($message) use ($user_details) {
+            $message->to($user_details['email'], $user_details['username'])
+                ->subject('Verify your email address');
+        });
     }
 
 }
