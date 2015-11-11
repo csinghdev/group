@@ -15,17 +15,14 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class VerificationController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
+     * Send invite to user and add new user to list.
      *
-     * @return \Illuminate\Http\Response
+     * @param null $group_id
+     * @param null $email_id
+     * @return mixed
      */
-    public function accept_invitation()
-    {
-        //
-    }
-
-
     public function invite_user($group_id = null, $email_id = null)
     {
         $user_id = $this->getAuthUserId();
@@ -128,6 +125,8 @@ class VerificationController extends Controller
 
 
     /**
+     * Send invitation to user.
+     *
      * @param $user_details
      */
     public function send_invitation($user_details)

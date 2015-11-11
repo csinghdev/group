@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Group;
 use App\Transformers\UserTransformer;
 use App\User;
+use App\Verification;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -53,6 +54,37 @@ class UserController extends Controller
         {
             return $this->respondValidationFailed('Required fields missing.');
         }
+        $verified = 0;
+        $confirmation_code = str_random(8);
+        $group = null;
+        if ( Input::get('unique_code') )
+        {
+            $unique_code = Input::get('unique_code');
+            $email = Input::get('email');
+            $invited_user = Verification::whereEmail($email)->first();
+            if ($invited_user)
+            {
+                $group_id = $invited_user->group_id;
+                $group = Group::findOrFail($group_id);
+                if ($group)
+                {
+                    if ( $unique_code === $group->unique_code)
+                    {
+                        $invited_user->delete();
+                        $confirmation_code = null;
+                        $verified = 1;
+                    }
+                    else
+                    {
+                        return $this->respondWithMessage("Invalid code.");
+                    }
+                }
+            }
+            else
+            {
+                return $this->respondNotFound("Uninvited user.");
+            }
+        }
 
         $image = $request->file('image');
         $image_url = null;
@@ -61,7 +93,6 @@ class UserController extends Controller
             $image_url = $this->saveImage($image);
         }
 
-        $confirmation_code = str_random(8);
         User::create(array(
             'username' => Input::get('username'),
             'email' => Input::get('email'),
@@ -69,14 +100,23 @@ class UserController extends Controller
             'last_name' => Input::get('last_name'),
             'password' => Hash::make(Input::get('password')),
             'image_url' => $image_url,
-            'confirmation_code' => $confirmation_code
+            'confirmation_code' => $confirmation_code,
+            'user_verified' => $verified
         ));
-
-        Mail::queue('emails.verify', ['confirmation_code' => $confirmation_code, 'username' => Input::get('username'), 'email' => Input::get('email')], function($message) {
-            $message->to(Input::get('email'), Input::get('username'))
-                ->subject('Verify your email address');
-        });
-
+        $group = Group::findOrFail(5);
+        if ($group)
+        {
+            $user = User::whereEmail(Input::get('email'))->first();
+            $user_id = $user->id;
+            $group->users()->attach($user_id);
+        }
+        else
+        {
+            Mail::queue('emails.verify', ['confirmation_code' => $confirmation_code, 'username' => Input::get('username'), 'email' => Input::get('email')], function($message) {
+                $message->to(Input::get('email'), Input::get('username'))
+                    ->subject('Verify your email address');
+            });
+        }
 
         return $this->respondCreated('User successfully created.');
     }
