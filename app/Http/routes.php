@@ -16,20 +16,19 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'api/v1'], function() {
-    Route::get('groups/{id}/users', 'UserController@index');
-    Route::resource('users', 'UserController', ['only' => ['store']]);
-    Route::get('users/{group}', 'UserController@index');
+    Route::get('group/{group_id}/users', 'UserController@index');
+    Route::resource('user', 'UserController', ['only' => ['store']]);
 
     Route::resource('groups', 'GroupController', ['only' => ['index', 'store', 'update']]);
     Route::get('group/{unique_code}', 'GroupController@joinGroup');
 
-    Route::get('posts/{id}/comments', 'CommentController@index');
-    Route::post('posts/{id}/comments', 'CommentController@store');
+    Route::get('post/{post_id}/comments', 'CommentController@index');
+    Route::post('post/{post_id}/comment', 'CommentController@store');
 
-    Route::get('groups/{id}/posts', 'PostController@index');
-    Route::get('groups/{id}/posts/{user}', 'PostController@show');
-    Route::post('groups/posts/delete', 'PostController@destroy');
-    Route::post('groups/{id}/posts/create', 'PostController@store');
+    Route::get('group/{group_id}/posts', 'PostController@index');
+    Route::get('group/{group_id}/user/posts', 'PostController@show');
+    Route::post('post/delete', 'PostController@destroy');
+    Route::post('group/{group_id}/post/create', 'PostController@store');
 
     Route::post('post/{post_id}/attachment', 'AttachmentsController@store');
     Route::get('group/{group_id}/post/{post_id}/attachment', 'AttachmentsController@index');
@@ -40,7 +39,7 @@ Route::group(['prefix' => 'api/v1'], function() {
 
     Route::get('register/{email_id}/verify/{c_code}', 'VerificationController@verify');
     Route::get('register/resend/{email_id}', 'VerificationController@resendCode');
-    Route::get('groups/{group_id}/invite/{email_id}', 'VerificationController@inviteUser');
+    Route::get('group/{group_id}/invite/{email_id}', 'VerificationController@inviteUser');
 
 });
 

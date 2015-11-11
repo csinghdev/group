@@ -54,7 +54,7 @@ class AttachmentsController extends Controller
      */
     public function index($group_id = null, $post_id = null)
     {
-        $user_id = JWTAuth::parseToken()->authenticate()->id;
+        $user_id = $this->getAuthUserId();
 
         $group_member = Group::findOrFail($group_id)->users->find($user_id);
 
@@ -89,7 +89,7 @@ class AttachmentsController extends Controller
      */
     public function store(Request $request, $post_id = null)
     {
-        $user_id = JWTAuth::parseToken()->authenticate()->id;
+        $user_id = $this->getAuthUserId();
 
         $post = User::findOrFail($user_id)->posts->find($post_id);
 

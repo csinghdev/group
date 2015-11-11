@@ -29,7 +29,7 @@ class PostController extends Controller
      */
     public function index($group_id = null)
     {
-        $user_id = JWTAuth::parseToken()->authenticate()->id;
+        $user_id = $this->getAuthUserId();
 
         $group = User::findOrFail($user_id)->groups->find($group_id);
 
@@ -72,7 +72,7 @@ class PostController extends Controller
      */
     public function store(Request $request, $group_id = null)
     {
-        $user_id = JWTAuth::parseToken()->authenticate()->id;
+        $user_id = $this->getAuthUserId();
         $group = User::findOrFail($user_id)->groups->find($group_id);
 
         if( ! $group )
@@ -101,10 +101,10 @@ class PostController extends Controller
      * @param $user_id
      * @return array|mixed
      */
-    public function show($group_id = null, $user_id)
+    public function show($group_id = null)
     {
-        $user = JWTAuth::parseToken()->authenticate()->id;
-        $group = User::findOrFail($user)->groups->find($group_id);
+        $user_id = $this->getAuthUserId();
+        $group = User::findOrFail($user_id)->groups->find($group_id);
 
         if( ! $group )
         {
@@ -166,7 +166,7 @@ class PostController extends Controller
         $group_id = $request->group_id;
         $post_id = $request->post_id;
 
-        $user_id = JWTAuth::parseToken()->authenticate()->id;
+        $user_id = $this->getAuthUserId();
         $group = User::findOrFail($user_id)->groups->find($group_id);
 
         if( ! $group )
