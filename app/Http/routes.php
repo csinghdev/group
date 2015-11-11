@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'api'], function() {
+Route::group(['prefix' => 'api/v1'], function() {
     Route::get('groups/{id}/users', 'UserController@index');
     Route::resource('users', 'UserController', ['only' => ['store']]);
     Route::get('users/{group}', 'UserController@index');
@@ -27,7 +27,6 @@ Route::group(['prefix' => 'api'], function() {
     Route::post('posts/{id}/comments', 'CommentController@store');
 
     Route::get('groups/{id}/posts', 'PostController@index');
-    //Route::get('groups/{group_id}/post/{post_id}', 'PostController@post');
     Route::get('groups/{id}/posts/{user}', 'PostController@show');
     Route::post('groups/posts/delete', 'PostController@destroy');
     Route::post('groups/{id}/posts/create', 'PostController@store');
