@@ -47,7 +47,7 @@ class AttachmentsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display attachments of a post of authenticated user.
      *
      * @return \Illuminate\Http\Response
      */
@@ -74,7 +74,7 @@ class AttachmentsController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * add an attachment to a post and store it in dropbox.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -101,11 +101,7 @@ class AttachmentsController extends Controller
 
         $url = str_random(20) . "." . $file->getClientOriginalExtension();
 
-        try{
-            $this->filesystem->write($url, file_get_contents($file));
-        }catch (\Dropbox\Exception $e){
-            echo $e->getMessage();
-        }
+        $this->storeAttachmentInDropbox($url, $file);
 
         Attachment::create(array(
             'url' => $url,
@@ -114,6 +110,21 @@ class AttachmentsController extends Controller
         ));
 
         return $this->respondCreated('Attachment successfully uploaded.');
+    }
+
+    /**
+     * Store attachment in dropbox.
+     *
+     * @param $url
+     * @param $file
+     */
+    public function storeAttachmentInDropbox($url, $file)
+    {
+        try {
+            $this->filesystem->write($url, file_get_contents($file));
+        } catch (\Dropbox\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
 }

@@ -23,7 +23,7 @@ class VerificationController extends Controller
      * @param null $email_id
      * @return mixed
      */
-    public function invite_user($group_id = null, $email_id = null)
+    public function inviteUser($group_id = null, $email_id = null)
     {
         $user_id = $this->getAuthUserId();
         $group = Group::findOrFail($group_id);
@@ -43,7 +43,7 @@ class VerificationController extends Controller
 
         if($user_list)
         {
-            $this->send_invitation($user_details);
+            $this->sendInvitation($user_details);
             return $this->respondWithMessage('User already invited.');
         }
 
@@ -52,7 +52,7 @@ class VerificationController extends Controller
                 'email' => $email_id
             ));
 
-        $this->send_invitation($user_details);
+        $this->sendInvitation($user_details);
 
         return $this->respondCreated('User successfully invited.');
     }
@@ -63,7 +63,7 @@ class VerificationController extends Controller
      * @param null $email_id
      * @return mixed
      */
-    public function resend_code($email_id = null)
+    public function resendCode($email_id = null)
     {
         $user = User::whereEmail($email_id)->first();
         if (!$user)
@@ -129,7 +129,7 @@ class VerificationController extends Controller
      *
      * @param $user_details
      */
-    public function send_invitation($user_details)
+    public function sendInvitation($user_details)
     {
         Mail::queue('emails.addUser', $user_details, function ($message) use ($user_details) {
             $message->to($user_details['email'], $user_details['username'])

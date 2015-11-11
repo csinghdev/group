@@ -22,7 +22,7 @@ class UserController extends Controller
 {
     private $filesystem;
     /**
-     * Display all users that belongs to a Group of authenticated user.
+     * Display all members that belongs to a Group of authenticated user.
      *
      * @param $group_id
      * @return array
@@ -43,7 +43,7 @@ class UserController extends Controller
 
 
     /**
-     * Store a newly created User in storage.
+     * Create a new user and send confirmation mail or add invited user with unique code.
      *
      * @param  Request  $request
      * @return Response
@@ -133,6 +133,8 @@ class UserController extends Controller
     }
 
     /**
+     * Save user image provided by user to dropbox.
+     *
      * @param $image
      * @return string
      */
