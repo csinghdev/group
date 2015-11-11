@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Attachment;
+use App\Group;
 use App\Post;
 use App\Transformers\AttachmentTransformer;
 use App\User;
@@ -47,15 +48,22 @@ class AttachmentsController extends Controller
     }
 
     /**
-     * Display attachments of a post of authenticated user.
+     * Display attachments of a post of a group whose member is authenticated user.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($post_id = null)
+    public function index($group_id = null, $post_id = null)
     {
         $user_id = JWTAuth::parseToken()->authenticate()->id;
 
-        $post = User::findOrFail($user_id)->posts->find($post_id);
+        $group_member = Group::findOrFail($group_id)->users->find($user_id);
+
+        if ( ! $group_member )
+        {
+            return $this->setStatusCode(404)->respondWithError('User does not belong to the group.');
+        }
+
+        $post = Group::findOrFail($group_id)->posts->find($post_id);
 
         if ( ! $post )
         {
