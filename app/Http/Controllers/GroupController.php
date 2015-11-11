@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Group;
 use App\Transformers\GroupTransformer;
 use App\User;
+use App\Verification;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -121,6 +122,44 @@ class GroupController extends Controller
             return $this->respondGroupValidationFailed();
         }
         return $this->respond('Successfully updated description.');
+    }
+
+    /**
+     * Add authenticated invited user with valid unique code to group.
+     *
+     * @param null $unique_code
+     * @return mixed
+     */
+    public function joinGroup($unique_code = null)
+    {
+        $user_id = $this->getAuthUserId();
+
+        if(!$unique_code)
+        {
+            return $this->respondValidationFailed("Missing unique code");
+        }
+
+        $email_id = User::findOrFail($user_id)->email;
+
+        $invited_user = Verification::whereEmail($email_id)->first();
+
+        if( ! $invited_user )
+        {
+            return $this->respondValidationFailed("Uninvited user");
+        }
+
+        $group = Group::findOrFail($invited_user->group_id);
+
+        if ( $unique_code === $group->unique_code )
+        {
+            $group->users()->attach($user_id);
+        }
+        else
+        {
+            return $this->respondValidationFailed("Wrong Code");
+        }
+
+        return $this->respondCreated("User successfully added to group");
     }
 
 }
