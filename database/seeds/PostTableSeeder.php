@@ -20,7 +20,6 @@ class PostTableSeeder extends Seeder {
             Post::create([
                 'title' => $faker->sentence(3),
                 'content' => $faker->sentence(10),
-                'likes_count' => $faker->numberBetween(0, 10),
                 'group_id' => $faker->randomElement($group_id),
                 'user_id' => $faker->randomElement($user_id)
             ]);

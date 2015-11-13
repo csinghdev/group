@@ -12,7 +12,6 @@ class PostTransformer extends TransformerAbstract {
             'id' => (int)$post->id,
             'title' => $post->title,
             'content' => $post->content,
-            'likes_count' => $post->likes_count,
             'group_id' => $post->group_id,
             'user_id' => $post->user_id,
             'created_at' => $post->created_at,

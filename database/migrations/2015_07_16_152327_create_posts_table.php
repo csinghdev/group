@@ -16,7 +16,6 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('title', 200);
             $table->longText('content');
-            $table->integer('likes_count')->unsigned();
             $table->integer('group_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();

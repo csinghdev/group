@@ -29,9 +29,7 @@ class PostController extends Controller
      */
     public function index($group_id = null)
     {
-        $user_id = $this->getAuthUserId();
-
-        $group = User::findOrFail($user_id)->groups->find($group_id);
+        $group = $this->getAuthUserGroup($group_id);
 
         if ( ! $group )
         {
@@ -44,7 +42,7 @@ class PostController extends Controller
 //            $likes += DB::table('like_post')->where('post_id', $pid)->lists('post_id','user_id');
 //        }
 //        dd($likes);
-        dd($posts[1]->user_id);
+        //dd($posts[1]->user_id);
 
         //$likes = Post::findOrFail(1)->likes;
         //dd($likes->count());

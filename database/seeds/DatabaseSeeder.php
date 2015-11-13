@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
         Comment::truncate();
 
         DB::table('group_user')->truncate();
-        DB::table('like_post')->truncate();
 
        // DB::statement("SET foreign_key_checks = 1");
 
@@ -35,7 +34,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GroupUserTableSeeder::class);
         $this->call(PostTableSeeder::class);
         $this->call(CommentsTableSeeder::class);
-        $this->call(LikePostTableSeeder::class);
+        //$this->call(LikePostTableSeeder::class);
         //$this->call(AttachmentTableSeeder::class);
         $this->call(AdminsTableSeeder::class);
         $this->call(UnverifiedUsersTableSeeder::class);
