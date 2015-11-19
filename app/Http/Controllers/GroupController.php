@@ -56,6 +56,13 @@ class GroupController extends Controller
     {
         $user_id = $this->getAuthUserId();
 
+        $user = User::findOrFail($user_id);
+
+        if ($user->user_verified == 0)
+        {
+            return $this->respondWithMessage("Unverified User.");
+        }
+
         if ( ! Input::get('group_name'))
         {
             return $this->respondValidationFailed('Parameters failed validation for a group');
