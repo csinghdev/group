@@ -103,7 +103,7 @@ class UserController extends Controller
             'confirmation_code' => $confirmation_code,
             'user_verified' => $verified
         ));
-        $group = Group::findOrFail(5);
+        //$group = Group::findOrFail(5);
         if ($group)
         {
             $user = User::whereEmail(Input::get('email'))->first();
