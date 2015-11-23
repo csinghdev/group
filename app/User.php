@@ -48,4 +48,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsToMany(Group::class);
     }
 
+    public function notificationToken()
+    {
+        return $this->hasOne(Notification::class);
+    }
 }

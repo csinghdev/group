@@ -2,6 +2,7 @@
 
 use App\Comment;
 use App\Group;
+use App\Notification;
 use App\Post;
 use App\User;
 use Illuminate\Database\Seeder;
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
         User::truncate();
         Post::truncate();
         Comment::truncate();
+        Notification::truncate();
 
         DB::table('group_user')->truncate();
 
@@ -35,7 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PostTableSeeder::class);
         $this->call(CommentsTableSeeder::class);
         //$this->call(LikePostTableSeeder::class);
-        //$this->call(AttachmentTableSeeder::class);
+        $this->call(NotificationTableSeeder::class);
         $this->call(UnverifiedUsersTableSeeder::class);
 
 
