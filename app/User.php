@@ -48,8 +48,4 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsToMany(Group::class);
     }
 
-    public function group_admin()
-    {
-        return $this->belongsTo(Group::class);
-    }
 }
