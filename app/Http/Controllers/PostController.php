@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Group;
+use App\Jobs\SendNotification;
 use App\Post;
 use App\Transformers\PostTransformer;
 use App\User;
@@ -71,22 +72,51 @@ class PostController extends Controller
     public function store(Request $request, $group_id = null)
     {
         $user_id = $this->getAuthUserId();
-        $group = User::findOrFail($user_id)->groups->find($group_id);
+        $user = User::findOrFail($user_id);
+        $group = $user->groups->find($group_id);
+
+        $username = $user->username;
+        $title = Input::get('title');
+        $content = Input::get('content');
 
         if( ! $group )
         {
             return $this->setStatusCode(404)->respondWithError('Group not found.');
         }
 
-        if ( ! Input::get('title') or ! Input::get('content'))
+        if ( ! $title or ! $content)
         {
             return $this->respondValidationFailed('Title or content missing.');
         }
 
-        Post::create(Input::all() + array(
-            'user_id' => $user_id,
-            'group_id' => $group_id
-        ));
+        $users_ids = Group::find($group_id)->users->lists('id');
+        $ios_tokens = array();
+        $android_tokens = array();
+        foreach($users_ids as $user_id)
+        {
+            $token_info = User::findOrFail($user_id)->notificationToken;
+            if ($token_info)
+            {
+                if ($token_info->ios === "1")
+                {
+                    array_push($ios_tokens, $token_info->token);
+                }
+                else
+                {
+                    array_push($android_tokens, $token_info->token);
+                }
+            }
+        }
+        $message = array('group' => $group->group_name,
+                         'user' => $username,
+                         'title' => $title);
+        $job = (new SendNotification($ios_tokens, $android_tokens, $message))->delay(60);
+        $this->dispatch($job);
+
+//        Post::create(Input::all() + array(
+//            'user_id' => $user_id,
+//            'group_id' => $group_id
+//        ));
 
         return $this->respondCreated('Post successfully created.');
     }

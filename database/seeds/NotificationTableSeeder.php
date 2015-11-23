@@ -15,7 +15,7 @@ class NotificationTableSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        foreach(range(1, 50) as $index)
+        foreach(range(1, 3) as $index)
         {
             Notification::create([
                 'user_id' => $index,

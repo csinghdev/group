@@ -14,7 +14,7 @@ class GroupUserTableSeeder extends Seeder {
         $user_id = User::lists('id')->all();
         $group_id = Group::lists('id')->all();
 
-        foreach(range(1, 10) as $index)
+        foreach(range(1, 30) as $index)
         {
             DB::table('group_user')->insert([
                 'group_id' => $faker->randomElement($group_id),
