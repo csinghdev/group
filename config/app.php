@@ -143,6 +143,8 @@ return [
         Sorskod\Larasponse\LarasponseServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
+        Davibennun\LaravelPushNotification\LaravelPushNotificationServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -200,6 +202,7 @@ return [
 
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'PushNotification' => Davibennun\LaravelPushNotification\Facades\PushNotification::class,
 
     ],
 
