@@ -12,7 +12,8 @@
         "dropbox/dropbox-sdk": "^1.1",
         "league/flysystem": "^1.0",
         "league/flysystem-dropbox": "^1.0",
-        "guzzlehttp/guzzle": "~6.0"
+        "guzzlehttp/guzzle": "~6.0",
+        "davibennun/laravel-push-notification": "dev-laravel5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
