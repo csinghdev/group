@@ -89,6 +89,11 @@ class PostController extends Controller
             return $this->respondValidationFailed('Title or content missing.');
         }
 
+        Post::create(Input::all() + array(
+            'user_id' => $user_id,
+            'group_id' => $group_id
+        ));
+
         $users_ids = Group::find($group_id)->users->lists('id');
         $ios_tokens = array();
         $android_tokens = array();
@@ -108,15 +113,11 @@ class PostController extends Controller
             }
         }
         $message = array('group' => $group->group_name,
-                         'user' => $username,
-                         'title' => $title);
-        $job = (new SendNotification($ios_tokens, $android_tokens, $message))->delay(60);
+            'user' => $username,
+            'title' => $title);
+        $type = 'post';
+        $job = (new SendNotification($ios_tokens, $android_tokens, $message, $type))->delay(60);
         $this->dispatch($job);
-
-//        Post::create(Input::all() + array(
-//            'user_id' => $user_id,
-//            'group_id' => $group_id
-//        ));
 
         return $this->respondCreated('Post successfully created.');
     }

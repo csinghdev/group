@@ -13,7 +13,7 @@ class SendNotification extends Job implements SelfHandling, ShouldQueue
 {
     use InteractsWithQueue, SerializesModels;
 
-    protected $ios_tokens, $android_tokens, $message;
+    protected $ios_tokens, $android_tokens, $message, $type, $msg;
 
     /**
      * Create a new job instance.
@@ -21,12 +21,14 @@ class SendNotification extends Job implements SelfHandling, ShouldQueue
      * @param $ios_tokens
      * @param $android_tokens
      * @param $message
+     * @param $type
      */
-    public function __construct($ios_tokens, $android_tokens, $message)
+    public function __construct($ios_tokens, $android_tokens, $message, $type)
     {
         $this->ios_tokens = $ios_tokens;
         $this->android_tokens = $android_tokens;
         $this->message = $message;
+        $this->type = $type;
     }
 
     /**
@@ -36,35 +38,41 @@ class SendNotification extends Job implements SelfHandling, ShouldQueue
      */
     public function handle()
     {
-        $msg = PushNotification::Message($this->message['group'],array(
-            'user' => $this->message['user'],
-            'title' => $this->message['title']
-        ));
-
-        $ios_device_tokens = array();
-        $android_device_tokens = array();
-
-        foreach($this->ios_tokens as $ios_token)
+        if($this->type === 'post')
         {
-            array_push($ios_device_tokens, PushNotification::Device($ios_token));
+            $this->msg = PushNotification::Message($this->message['group'],array(
+                'user' => $this->message['user'],
+                'title' => $this->message['title']
+            ));
         }
 
-        foreach($this->android_tokens as $android_token)
+        if(count($this->ios_tokens) > 0)
         {
-            array_push($android_device_tokens, PushNotification::Device($android_token));
+            $ios_device_tokens = array();
+            foreach($this->ios_tokens as $ios_token)
+            {
+                array_push($ios_device_tokens, PushNotification::Device($ios_token));
+                $ios_devices = PushNotification::DeviceCollection($ios_device_tokens);
+                $collection1 = PushNotification::app('appNameIOS')
+                    ->to($ios_devices)
+                    ->send($this->msg);
+            }
         }
 
-        $ios_devices = PushNotification::DeviceCollection($ios_device_tokens);
-        $android_devices = PushNotification::DeviceCollection($ios_device_tokens);
+        if(count($this->android_tokens) > 0)
+        {
+            $android_device_tokens = array();
+            foreach($this->android_tokens as $android_token)
+            {
+                array_push($android_device_tokens, PushNotification::Device($android_token));
+            }
+            $android_devices = PushNotification::DeviceCollection($android_device_tokens);
+            $collection2 = PushNotification::app('appNameAndroid')
+                ->to($android_devices)
+                ->send($this->msg);
+        }
 
-        $collection1 = PushNotification::app('appNameIOS')
-            ->to($ios_devices)
-            ->send($msg);
 
-        $collection2 = PushNotification::app('appNameAndroid')
-            ->to($android_devices)
-            ->send($msg);
-        
         // get response for each device push
 //        foreach ($collection->pushManager as $push) {
 //            $response = $push->getAdapter()->getResponse();
