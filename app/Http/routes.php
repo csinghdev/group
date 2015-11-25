@@ -41,5 +41,7 @@ Route::group(['prefix' => 'api/v1'], function() {
     Route::get('register/resend/{email_id}', 'VerificationController@resendCode');
     Route::get('group/{group_id}/invite/{email_id}', 'VerificationController@inviteUser');
 
+    Route::resource('notification', 'NotificationController', ['only' => ['store','update']]);
+
 });
 

@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -94,30 +95,27 @@ class PostController extends Controller
             'group_id' => $group_id
         ));
 
-        $users_ids = Group::find($group_id)->users->lists('id');
-        $ios_tokens = array();
-        $android_tokens = array();
-        foreach($users_ids as $user_id)
-        {
-            $token_info = User::findOrFail($user_id)->notificationToken;
-            if ($token_info)
-            {
-                if ($token_info->ios === "1")
-                {
-                    array_push($ios_tokens, $token_info->token);
-                }
-                else
-                {
-                    array_push($android_tokens, $token_info->token);
+        if(App::environment() != "local") {
+            $users_ids = Group::find($group_id)->users->lists('id');
+            $ios_tokens = array();
+            $android_tokens = array();
+            foreach ($users_ids as $user_id) {
+                $token_info = User::findOrFail($user_id)->notificationToken;
+                if ($token_info) {
+                    if ($token_info->ios === "1") {
+                        array_push($ios_tokens, $token_info->token);
+                    } else {
+                        array_push($android_tokens, $token_info->token);
+                    }
                 }
             }
+            $message = array('group' => $group->group_name,
+                'user' => $username,
+                'title' => $title);
+            $type = 'post';
+            $job = (new SendNotification($ios_tokens, $android_tokens, $message, $type))->delay(60);
+            $this->dispatch($job);
         }
-        $message = array('group' => $group->group_name,
-            'user' => $username,
-            'title' => $title);
-        $type = 'post';
-        $job = (new SendNotification($ios_tokens, $android_tokens, $message, $type))->delay(60);
-        $this->dispatch($job);
 
         return $this->respondCreated('Post successfully created.');
     }

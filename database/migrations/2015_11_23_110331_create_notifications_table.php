@@ -16,7 +16,7 @@ class CreateNotificationsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->boolean('ios')->default(0);
-            $table->string('token', 100);
+            $table->string('token', 100)->unique();
             $table->timestamps();
         });
 
