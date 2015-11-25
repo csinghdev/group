@@ -25,6 +25,7 @@ Route::group(['prefix' => 'api/v1'], function() {
     Route::get('post/{post_id}/comments', 'CommentController@index');
     Route::post('post/{post_id}/comment', 'CommentController@store');
 
+    // Use includes=comments in post routes to include comments also
     Route::get('group/{group_id}/posts', 'PostController@index');
     Route::get('group/{group_id}/posts/{post_id}', 'PostController@index');
     Route::get('group/{group_id}/user/posts', 'PostController@show');

@@ -5,7 +5,8 @@ use League\Fractal\TransformerAbstract;
 
 class PostTransformer extends TransformerAbstract {
 
-    protected $defaultIncludes = ['comments'];
+    protected $availableIncludes = ['comments'];
+    // to make it available by default use $defaultIncludes
 
     public function transform(Post $post) {
         return [
