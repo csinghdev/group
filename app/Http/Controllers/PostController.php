@@ -7,6 +7,7 @@ use App\Jobs\SendNotification;
 use App\Post;
 use App\Transformers\PostTransformer;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -29,25 +30,23 @@ class PostController extends Controller
      * @param null $group_id
      * @return array|mixed
      */
-    public function index($group_id = null)
+    public function index($group_id = null, $post_id = null)
     {
         $group = $this->getAuthUserGroup($group_id);
-
         if ( ! $group )
         {
             return $this->setStatusCode(404)->respondWithError('Group not found.');
         }
+
         $posts = $this->getPosts($group_id);
+        if($post_id)
+        {
+            $new_posts = $posts->filter(function ($item) use ($post_id) {
+                return $item->id > $post_id;
+            });
 
-//        $likes = [];
-//        foreach($posts->lists('id') as $pid) {
-//            $likes += DB::table('like_post')->where('post_id', $pid)->lists('post_id','user_id');
-//        }
-//        dd($likes);
-        //dd($posts[1]->user_id);
-
-        //$likes = Post::findOrFail(1)->likes;
-        //dd($likes->count());
+            return $this->response->collection($new_posts, new PostTransformer);
+        }
 
         return $this->response->collection($posts, new PostTransformer);
     }

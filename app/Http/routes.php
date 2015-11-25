@@ -26,6 +26,7 @@ Route::group(['prefix' => 'api/v1'], function() {
     Route::post('post/{post_id}/comment', 'CommentController@store');
 
     Route::get('group/{group_id}/posts', 'PostController@index');
+    Route::get('group/{group_id}/posts/{post_id}', 'PostController@index');
     Route::get('group/{group_id}/user/posts', 'PostController@show');
     Route::post('post/delete', 'PostController@destroy');
     Route::post('group/{group_id}/post/create', 'PostController@store');
