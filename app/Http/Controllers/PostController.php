@@ -38,14 +38,13 @@ class PostController extends Controller
             return $this->setStatusCode(404)->respondWithError('Group not found.');
         }
 
-        $posts = $this->getPosts($group_id);
         if($post_id)
         {
-            $new_posts = $posts->filter(function ($item) use ($post_id) {
-                return $item->id > $post_id;
-            });
-
-            return $this->response->collection($new_posts, new PostTransformer);
+            $posts = $this->getNewPosts($group_id, $post_id);
+        }
+        else
+        {
+            $posts = $this->getPosts($group_id);
         }
 
         return $this->response->collection($posts, new PostTransformer);
@@ -61,6 +60,11 @@ class PostController extends Controller
     public function getPosts($group_id)
     {
         return $group_id ? Group::findOrFail($group_id)->posts : Post::all();
+    }
+
+    public function getNewPosts($group_id, $post_id)
+    {
+        return $group_id ? Group::findOrFail($group_id)->newPosts($post_id)->get() : Post::all();
     }
 
     /**

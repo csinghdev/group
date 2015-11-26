@@ -28,6 +28,20 @@ class Group extends Model
         return $this->hasMany(Post::class);
     }
 
+    /**
+     * Show posts after given post_id.
+     *
+     * @param $post_id
+     * @return mixed
+     */
+    public function newPosts($post_id)
+    {
+        return $this->hasMany(Post::class)->where('id','>',$post_id);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function admin()
     {
         return $this->hasOne(User::class);
