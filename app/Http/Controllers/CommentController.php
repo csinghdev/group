@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Group;
 use App\Post;
 use App\Transformers\CommentTransformer;
 use App\User;
@@ -22,29 +23,23 @@ class CommentController extends Controller
      * @param null $post_id
      * @return array|mixed
      */
-    public function index( $post_id = null )
+    public function index( $group_id = null, $post_id = null )
     {
-        // Authenticating user.
-        JWTAuth::parseToken()->authenticate()->id;
+        $group = $this->getAuthUserGroup($group_id)->id;
+        if( !$group )
+        {
+            return $this->setStatusCode(404)->respondWithError('Group not found.');
+        }
 
-        if ( ! Post::find($post_id) )
+        $post = Group::findOrFail($group_id)->posts->find($post_id);
+
+        if ( ! $post )
         {
             return $this->setStatusCode(404)->respondWithError('Post not found.');
         }
-        $comments = $this->getComments($post_id);
+        $comments = $post->comments;
 
         return $this->response->collection($comments, new CommentTransformer);
-    }
-
-    /**
-     * Get comments of a post.
-     *
-     * @param $post_id
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
-     */
-    public function getComments($post_id)
-    {
-        return $post_id ? Post::findOrFail($post_id)->comments : Comment::all();
     }
 
     /**
@@ -53,10 +48,18 @@ class CommentController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request, $post_id = null)
+    public function store(Request $request, $group_id = null, $post_id = null)
     {
         $user_id = $this->getAuthUserId();
-        $post = Post::find($post_id);
+
+        $group_user = Group::findOrFail($group_id)->users->find($user_id);
+
+        if( !$group_user )
+        {
+            return $this->setStatusCode(404)->respondWithError('Group not found.');
+        }
+
+        $post = Group::findOrFail($group_id)->posts->find($post_id);
 
         if( ! $post )
         {
