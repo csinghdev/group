@@ -23,7 +23,7 @@ class CommentController extends Controller
      * @param null $post_id
      * @return array|mixed
      */
-    public function index( $group_id = null, $post_id = null )
+    public function index( $group_id = null, $post_id = null, $comment_id = null )
     {
         $group = $this->getAuthUserGroup($group_id)->id;
         if( !$group )
@@ -37,7 +37,15 @@ class CommentController extends Controller
         {
             return $this->setStatusCode(404)->respondWithError('Post not found.');
         }
-        $comments = $post->comments;
+
+        if($comment_id)
+        {
+            $comments = $post->newComments($comment_id)->get();
+        }
+        else
+        {
+            $comments = $post->comments;
+        }
 
         return $this->response->collection($comments, new CommentTransformer);
     }
