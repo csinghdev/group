@@ -42,15 +42,31 @@ class UserController extends Controller
         return $this->response->collection($users, new UserTransformer);
     }
 
+    /**
+     * Store as well as update user image.
+     *
+     * @param Request $request
+     * @return mixed
+     */
     public function storeImage(Request $request)
     {
         $user = JWTAuth::parseToken()->authenticate();
         $image = $request->file('image');
         if ($user and $image)
         {
-            $image_url = $this->saveImage($image);
 
-            $user->image_url = $image_url;
+            if( $user->image_url == null)
+            {
+                $image_url = $this->saveImage($image);
+
+                $user->image_url = $image_url;
+            }
+            else
+            {
+                $image_url = $this->updateImage($image, $user->image_url);
+
+                $user->image_url = $image_url;
+            }
 
             if( ! $user->save() )
             {
@@ -156,6 +172,39 @@ class UserController extends Controller
         $this->filesystem = new Filesystem(new Dropbox($client, '/user_image'));
 
         $url = str_random(20) . "." . $image->getClientOriginalExtension();
+
+        try {
+            $this->filesystem->write($url, file_get_contents($image));
+            return $url;
+        } catch (\Dropbox\Exception $e) {
+            echo $e->getMessage();
+        }
+
+        return $url;
+    }
+
+    /**
+     * Delete previous image and store new image.
+     *
+     * @param $image
+     * @param $old_image_url
+     * @return string
+     */
+    public function updateImage($image, $old_image_url)
+    {
+        $client = new Client(Config::get('dropbox.token'), Config::get('dropbox.appName'));
+        $this->filesystem = new Filesystem(new Dropbox($client, '/user_image'));
+
+        $url = str_random(20) . "." . $image->getClientOriginalExtension();
+
+        if ($this->filesystem->has($old_image_url))
+        {
+            try {
+                $this->filesystem->delete($old_image_url);
+            } catch (\Dropbox\Exception $e) {
+                echo $e->getMessage();
+            }
+        }
 
         try {
             $this->filesystem->write($url, file_get_contents($image));
