@@ -26,26 +26,7 @@ class AttachmentsController extends Controller
 {
     private $filesystem;
 
-    public function __construct(Larasponse $response){
-
-        $this->response = $response;
-        if(Input::has('includes'))
-        {
-            $this->response->parseIncludes(Input::get('includes'));
-        }
-
-        if(App::environment() === "local"){
-            //$this->filesystem = new Filesystem(new Adapter( public_path() . '/files/'));
-            $client = new Client(Config::get('dropbox.token'), Config::get('dropbox.appName'));
-            $this->filesystem = new Filesystem(new Dropbox($client, '/files'));
-        }
-        else
-        {
-            $client = new Client(Config::get('dropbox.token'), Config::get('dropbox.appName'));
-            $this->filesystem = new Filesystem(new Dropbox($client, '/files'));
-        }
-
-    }
+    private $attachment_path = '/attachments';
 
     /**
      * Display attachments of a post of a group whose member is authenticated user.
@@ -104,12 +85,15 @@ class AttachmentsController extends Controller
 
         if (!$file)
         {
-            return $this->respondWithError("Attachment not found");
+            return $this->respondNotFound("Attachment not found");
         }
 
-        $url = str_random(20) . "." . $file->getClientOriginalExtension();
+        $url = $this->saveFile($file, $this->attachment_path);
 
-        $this->storeAttachmentInDropbox($url, $file);
+        if(!$url)
+        {
+            return $this->setStatusCode('500')->respondWithError('Unable to save attachment.');
+        }
 
         Attachment::create(array(
             'url' => $url,
@@ -118,21 +102,6 @@ class AttachmentsController extends Controller
         ));
 
         return $this->respondCreated('Attachment successfully uploaded.');
-    }
-
-    /**
-     * Store attachment in dropbox.
-     *
-     * @param $url
-     * @param $file
-     */
-    public function storeAttachmentInDropbox($url, $file)
-    {
-        try {
-            $this->filesystem->write($url, file_get_contents($file));
-        } catch (\Dropbox\Exception $e) {
-            echo $e->getMessage();
-        }
     }
 
 }

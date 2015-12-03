@@ -121,7 +121,7 @@ class GroupController extends Controller
 
                 if( $group->group_image_url == null)
                 {
-                    $image_url = $this->saveImage($image, $this->group_image_path);
+                    $image_url = $this->saveFile($image, $this->group_image_path);
 
                     $group->group_image_url = $image_url;
                 }

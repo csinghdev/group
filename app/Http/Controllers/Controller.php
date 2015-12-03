@@ -158,21 +158,21 @@ abstract class Controller extends BaseController
 
 
     /**
-     * Save image to dropbox.
+     * Save file to dropbox.
      *
-     * @param $image
+     * @param $file
      * @param $path
      * @return string
      */
-    public function saveImage($image, $path)
+    public function saveFile($file, $path)
     {
         $client = new Client(Config::get('dropbox.token'), Config::get('dropbox.appName'));
         $this->filesystem = new Filesystem(new Dropbox($client, $path));
 
-        $url = str_random(20) . "." . $image->getClientOriginalExtension();
+        $url = str_random(20) . "." . $file->getClientOriginalExtension();
 
         try {
-            $this->filesystem->write($url, file_get_contents($image));
+            $this->filesystem->write($url, file_get_contents($file));
             return $url;
         } catch (\Dropbox\Exception $e) {
             echo $e->getMessage();

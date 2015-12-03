@@ -60,7 +60,7 @@ class UserController extends Controller
 
             if( $user->image_url == null)
             {
-                $image_url = $this->saveImage($image, $this->user_image_path);
+                $image_url = $this->saveFile($image, $this->user_image_path);
 
                 $user->image_url = $image_url;
             }
