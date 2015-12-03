@@ -16,6 +16,8 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class GroupController extends Controller
 {
+
+    private $group_image_path = '/group_image';
     /**
      * Remove this, not working
      */
@@ -101,6 +103,44 @@ class GroupController extends Controller
 //
 //        return $this->response->item($groups, new GroupTransformer);
 //    }
+
+    public function storeImage(Request $request, $id)
+    {
+        $group = $this->getAuthUserGroup($id);
+        $image = $request->file('image');
+
+        if(!$image)
+        {
+            return $this->respondNotFound("Image not found");
+        }
+
+        if($group)
+        {
+            if ($group and $image)
+            {
+
+                if( $group->group_image_url == null)
+                {
+                    $image_url = $this->saveImage($image, $this->group_image_path);
+
+                    $group->group_image_url = $image_url;
+                }
+                else
+                {
+                    $image_url = $this->updateImage($image, $this->group_image_path, $group->group_image_url);
+
+                    $group->group_image_url = $image_url;
+                }
+
+                if( ! $group->save() )
+                {
+                    return $this->setStatusCode('500')->respondWithError('Unable to save image.');
+                }
+            }
+        }
+
+        return $this->respondCreated("Group image saved successfully.");
+    }
 
     /**
      * Update the specified resource in storage.

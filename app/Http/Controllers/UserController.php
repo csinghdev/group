@@ -12,16 +12,13 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 
-use Dropbox\Client;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
-use League\Flysystem\Filesystem;
-use League\Flysystem\Dropbox\DropboxAdapter as Dropbox;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
-    private $filesystem;
+
+    private $user_image_path = '/user_image';
     /**
      * Display all members that belongs to a Group of authenticated user.
      *
@@ -52,18 +49,24 @@ class UserController extends Controller
     {
         $user = JWTAuth::parseToken()->authenticate();
         $image = $request->file('image');
-        if ($user and $image)
+
+        if(!$image)
+        {
+            return $this->respondNotFound("Image not found");
+        }
+
+        if ($user)
         {
 
             if( $user->image_url == null)
             {
-                $image_url = $this->saveImage($image);
+                $image_url = $this->saveImage($image, $this->user_image_path);
 
                 $user->image_url = $image_url;
             }
             else
             {
-                $image_url = $this->updateImage($image, $user->image_url);
+                $image_url = $this->updateImage($image, $this->user_image_path, $user->image_url);
 
                 $user->image_url = $image_url;
             }
@@ -73,7 +76,7 @@ class UserController extends Controller
                 return $this->setStatusCode('500')->respondWithError('Unable to save image.');
             }
         }
-        dd($user);
+
         return $this->respondCreated("User image saved successfully.");
     }
 
@@ -158,61 +161,5 @@ class UserController extends Controller
     public function getUsers($group_id)
     {
         return $group_id ? Group::findOrFail($group_id)->users : User::all();
-    }
-
-    /**
-     * Save user image provided by user to dropbox.
-     *
-     * @param $image
-     * @return string
-     */
-    public function saveImage($image)
-    {
-        $client = new Client(Config::get('dropbox.token'), Config::get('dropbox.appName'));
-        $this->filesystem = new Filesystem(new Dropbox($client, '/user_image'));
-
-        $url = str_random(20) . "." . $image->getClientOriginalExtension();
-
-        try {
-            $this->filesystem->write($url, file_get_contents($image));
-            return $url;
-        } catch (\Dropbox\Exception $e) {
-            echo $e->getMessage();
-        }
-
-        return $url;
-    }
-
-    /**
-     * Delete previous image and store new image.
-     *
-     * @param $image
-     * @param $old_image_url
-     * @return string
-     */
-    public function updateImage($image, $old_image_url)
-    {
-        $client = new Client(Config::get('dropbox.token'), Config::get('dropbox.appName'));
-        $this->filesystem = new Filesystem(new Dropbox($client, '/user_image'));
-
-        $url = str_random(20) . "." . $image->getClientOriginalExtension();
-
-        if ($this->filesystem->has($old_image_url))
-        {
-            try {
-                $this->filesystem->delete($old_image_url);
-            } catch (\Dropbox\Exception $e) {
-                echo $e->getMessage();
-            }
-        }
-
-        try {
-            $this->filesystem->write($url, file_get_contents($image));
-            return $url;
-        } catch (\Dropbox\Exception $e) {
-            echo $e->getMessage();
-        }
-
-        return $url;
     }
 }
