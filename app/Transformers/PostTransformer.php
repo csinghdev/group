@@ -5,7 +5,7 @@ use League\Fractal\TransformerAbstract;
 
 class PostTransformer extends TransformerAbstract {
 
-    protected $availableIncludes = ['comments'];
+    protected $defaultIncludes = ['attachments'], $availableIncludes = ['comments'];
     // to make it available by default use $defaultIncludes
 
     public function transform(Post $post) {
@@ -22,5 +22,10 @@ class PostTransformer extends TransformerAbstract {
     public function includeComments(Post $post)
     {
         return $this->collection($post->comments, new CommentTransformer);
+    }
+
+    public function includeAttachments(Post $post)
+    {
+        return $this->collection($post->attachments, new AttachmentTransformer);
     }
 }
