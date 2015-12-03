@@ -35,7 +35,7 @@ Route::group(['prefix' => 'api/v1'], function() {
     Route::post('post/delete', 'PostController@destroy');
     Route::post('group/{group_id}/post/create', 'PostController@store');
 
-    Route::post('post/{post_id}/attachment', 'AttachmentsController@store');
+    Route::post('group/{group_id}/post/{post_id}/attachment', 'AttachmentsController@store');
     Route::get('group/{group_id}/post/{post_id}/attachment', 'AttachmentsController@index');
 
     Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);

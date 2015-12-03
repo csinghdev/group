@@ -10,21 +10,12 @@ use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Dropbox\Client;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Config;
+
 use Illuminate\Support\Facades\Input;
 
-use League\Flysystem\Filesystem;
-use League\Flysystem\Adapter\Local as Adapter;
-use League\Flysystem\Dropbox\DropboxAdapter as Dropbox;
-use Sorskod\Larasponse\Larasponse;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AttachmentsController extends Controller
 {
-    private $filesystem;
 
     private $attachment_path = '/attachments';
 
@@ -63,18 +54,29 @@ class AttachmentsController extends Controller
 
 
     /**
-     * add an attachment to a post and store it in dropbox.
+     * add an attachment to a post and store it in dropbox
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param null $group_id
+     * @param null $post_id
+     * @return mixed
      */
-    public function store(Request $request, $post_id = null)
+    public function store(Request $request, $group_id = null, $post_id = null)
     {
         $user_id = $this->getAuthUserId();
 
+        $group_member = Group::findOrFail($group_id)->users->find($user_id);
+
+        if ( ! $group_member )
+        {
+            return $this->setStatusCode(404)->respondWithError('User does not belong to the group.');
+        }
+
+        $group_post = Group::findOrFail($group_id)->posts->find($post_id);
+
         $post = User::findOrFail($user_id)->posts->find($post_id);
 
-        if ( ! $post )
+        if ( !$group_post and ! $post )
         {
             return $this->setStatusCode(404)->respondWithError('Post not found.');
         }
