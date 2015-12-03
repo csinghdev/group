@@ -10,7 +10,8 @@ class GroupTransformer extends TransformerAbstract {
         return [
             'id' => (int)$group->id,
             'group_name' => $group->group_name,
-            'description' => $group->description
+            'description' => $group->description,
+            'image_url' => $group->group_image_url
         ];
     }
 }

@@ -16,6 +16,7 @@ class CreateGroupsTable extends Migration
             $table->increments('id');
             $table->string('group_name',100)->unique();
             $table->mediumText('description')->nullable();
+            $table->string('group_image_url', 50)->nullable();
             $table->string('unique_code',10);
             $table->integer('admin_id');
             $table->timestamps();
