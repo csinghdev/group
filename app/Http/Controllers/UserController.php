@@ -106,20 +106,12 @@ class UserController extends Controller
             }
         }
 
-        $image = $request->file('image');
-        $image_url = null;
-        if ($image)
-        {
-            $image_url = $this->saveImage($image);
-        }
-
         User::create(array(
             'username' => Input::get('username'),
             'email' => Input::get('email'),
             'first_name' => Input::get('first_name'),
             'last_name' => Input::get('last_name'),
             'password' => Hash::make(Input::get('password')),
-            'image_url' => $image_url,
             'confirmation_code' => $confirmation_code,
             'user_verified' => $verified
         ));
