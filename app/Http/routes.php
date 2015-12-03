@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'api/v1'], function() {
     Route::get('group/{group_id}/users', 'UserController@index');
     Route::resource('user', 'UserController', ['only' => ['store']]);
+    Route::post('user/image', 'UserController@storeImage');
 
     Route::resource('groups', 'GroupController', ['only' => ['index', 'store', 'update']]);
     Route::get('group/{unique_code}', 'GroupController@joinGroup');
@@ -29,7 +30,7 @@ Route::group(['prefix' => 'api/v1'], function() {
     // Use includes=comments in post routes to include comments also
     Route::get('group/{group_id}/posts', 'PostController@index');
     Route::get('group/{group_id}/posts/{post_id}', 'PostController@index');
-    Route::get('group/{group_id}/user/posts', 'PostController@show');
+    //Route::get('group/{group_id}/user/posts', 'PostController@show');
     Route::post('post/delete', 'PostController@destroy');
     Route::post('group/{group_id}/post/create', 'PostController@store');
 

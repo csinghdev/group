@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Dropbox\DropboxAdapter as Dropbox;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
@@ -39,6 +40,25 @@ class UserController extends Controller
         $users = $this->getUsers($group_id);
 
         return $this->response->collection($users, new UserTransformer);
+    }
+
+    public function storeImage(Request $request)
+    {
+        $user = JWTAuth::parseToken()->authenticate();
+        $image = $request->file('image');
+        if ($user and $image)
+        {
+            $image_url = $this->saveImage($image);
+
+            $user->image_url = $image_url;
+
+            if( ! $user->save() )
+            {
+                return $this->setStatusCode('500')->respondWithError('Unable to save image.');
+            }
+        }
+        dd($user);
+        return $this->respondCreated("User image saved successfully.");
     }
 
 
