@@ -206,7 +206,15 @@ class GroupController extends Controller
 
         if ( $unique_code === $group->unique_code )
         {
-            $group->users()->attach($user_id);
+            if(!$group->users()->contains($user_id))
+            {
+                $group->users()->attach($user_id);
+            }
+            else
+            {
+                return $this->respondWithMessage("User already added to group.");
+            }
+
         }
         else
         {

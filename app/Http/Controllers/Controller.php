@@ -241,7 +241,7 @@ abstract class Controller extends BaseController
         try{
             $file = $this->filesystem->read($file_name);
         }catch (\Dropbox\Exception $e){
-            return Response::json("{'message' => 'File not found'}", 404);
+            return Response::json("{}", 404);
         }
 
         $response = Response::make($file, 200, ['Content-Type' => 'image/jpeg']);
