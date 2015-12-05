@@ -104,6 +104,13 @@ class GroupController extends Controller
 //        return $this->response->item($groups, new GroupTransformer);
 //    }
 
+    /**
+     * Store image of Group.
+     *
+     * @param Request $request
+     * @param int $id
+     * @return mixed
+     */
     public function storeImage(Request $request, $id)
     {
         $group = $this->getAuthUserGroup($id);
@@ -207,6 +214,30 @@ class GroupController extends Controller
         }
 
         return $this->respondCreated("User successfully added to group");
+    }
+
+    /**
+     * Get image of a Group.
+     *
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
+    public function getImage($id)
+    {
+        $group = $this->getAuthUserGroup($id);
+        if(!$group)
+        {
+            return $this->respondGroupValidationFailed();
+        }
+
+        $file_name = $group->group_image_url;
+        if($file_name === null)
+        {
+            return $this->respondNotFound("Image not found.");
+        }
+
+        return $this->getFile($file_name, $this->group_image_path);
     }
 
 }

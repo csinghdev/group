@@ -125,6 +125,16 @@ abstract class Controller extends BaseController
     }
 
     /**
+     * Get Authenticated User.
+     *
+     * @return mixed
+     */
+    public function getAuthUser()
+    {
+        return JWTAuth::parseToken()->authenticate();
+    }
+
+    /**
      * Get Authenticated User Id.
      *
      * @return mixed
@@ -214,6 +224,29 @@ abstract class Controller extends BaseController
         }
 
         return $url;
+    }
+
+    /**
+     * Get file from dropbox.
+     *
+     * @param $file_name
+     * @param $path
+     * @return mixed
+     */
+    public function getFile($file_name, $path)
+    {
+        $client = new Client(Config::get('dropbox.token'), Config::get('dropbox.appName'));
+        $this->filesystem = new Filesystem(new Dropbox($client, $path));
+
+        try{
+            $file = $this->filesystem->read($file_name);
+        }catch (\Dropbox\Exception $e){
+            return Response::json("{'message' => 'File not found'}", 404);
+        }
+
+        $response = Response::make($file, 200, ['Content-Type' => 'image/jpeg']);
+
+        return $response;
     }
 
 }

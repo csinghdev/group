@@ -4,7 +4,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\App;
 use Dropbox\Client;
-use League\Flysystem\Config;
+use Illuminate\Support\Facades\Config;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Adapter\Local as Adapter;
 //use League\Flysystem\Adapter\Dropbox;
@@ -40,7 +40,7 @@ class CreateAttachmentsTable extends Migration
      */
     public function up()
     {
-        $this->filesystem->createDir('files');
+        $this->filesystem->createDir('attachments');
 
         Schema::create('attachments', function (Blueprint $table) {
             $table->increments('id');
@@ -67,7 +67,7 @@ class CreateAttachmentsTable extends Migration
         Schema::dropIfExists('attachments');
 
         try{
-            $this->filesystem->deleteDir('files');
+            $this->filesystem->deleteDir('attachments');
         }catch (\Dropbox\Exception_BadResponse $e){}
     }
 

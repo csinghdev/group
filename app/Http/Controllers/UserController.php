@@ -162,4 +162,22 @@ class UserController extends Controller
     {
         return $group_id ? Group::findOrFail($group_id)->users : User::all();
     }
+
+    /**
+     * Get Image of authenticated User.
+     *
+     * @return mixed
+     */
+    public function getImage()
+    {
+        $user_id = $this->getAuthUser();
+        $file_name = $user_id->image_url;
+
+        if($file_name === null)
+        {
+            return $this->respondNotFound("Image not found");
+        }
+
+        return $this->getFile($file_name, $this->user_image_path);
+    }
 }
