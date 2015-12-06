@@ -206,7 +206,7 @@ class GroupController extends Controller
 
         if ( $unique_code === $group->unique_code )
         {
-            if(!$group->users()->contains($user_id))
+            if(!$group->users->contains($user_id))
             {
                 $group->users()->attach($user_id);
             }
