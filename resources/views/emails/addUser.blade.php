@@ -4,153 +4,154 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>My Group</title>
     <style type="text/css">
-        /* /\/\/\/\/\/\/\/\/ CLIENT-SPECIFIC STYLES /\/\/\/\/\/\/\/\/ */
-        #outlook a{padding:0;} /* Force Outlook to provide a "view in browser" message */
-        .ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail to display emails at full width */
-        .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;} /* Force Hotmail to display normal line spacing */
-        body, table, td, p, a, li, blockquote{-webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;} /* Prevent WebKit and Windows mobile changing default text sizes */
-        table, td{mso-table-lspace:0pt; mso-table-rspace:0pt;} /* Remove spacing between tables in Outlook 2007 and up */
-        img{-ms-interpolation-mode:bicubic;} /* Allow smoother rendering of resized image in Internet Explorer */
 
-        /* /\/\/\/\/\/\/\/\/ RESET STYLES /\/\/\/\/\/\/\/\/ */
+        #outlook a{padding:0;}
+        .ReadMsgBody{width:100%;} .ExternalClass{width:100%;}
+        .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;}
+        body, table, td, p, a, li, blockquote{-webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;}
+        table, td{mso-table-lspace:0pt; mso-table-rspace:0pt;}
+        img{-ms-interpolation-mode:bicubic;}
+
+
         body{margin:0; padding:0;}
         img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
         table{border-collapse:collapse !important;}
         body, #bodyTable, #bodyCell{height:100% !important; margin:0; padding:0; width:100% !important;}
 
-        /* /\/\/\/\/\/\/\/\/ TEMPLATE STYLES /\/\/\/\/\/\/\/\/ */
 
-        /* ========== Page Styles ========== */
+
+
 
         #bodyCell{padding:20px;}
         #templateContainer{width:600px;}
 
         body, #bodyTable{
-            /*@editable*/ background-color:#f5f5dc;
+            background-color:#f5f5dc;
         }
 
 
         #bodyCell{
-            /*@editable*/ border-top:4px solid #1f99f9;
+            border-top:4px solid #1f99f9;
         }
 
 
         #templateContainer{
-            /*@editable*/ border:1px solid #BBBBBB;
+            border:1px solid #BBBBBB;
+            background-color:#187ac7;
         }
 
 
         h1{
-            /*@editable*/ color:#202020 !important;
+            color:#202020 !important;
             display:block;
-            /*@editable*/ font-family:Helvetica;
-            /*@editable*/ font-size:26px;
-            /*@editable*/ font-style:normal;
-            /*@editable*/ font-weight:bold;
-            /*@editable*/ line-height:100%;
-            /*@editable*/ letter-spacing:normal;
+            font-family:Helvetica;
+            font-size:26px;
+            font-style:normal;
+            font-weight:bold;
+            line-height:100%;
+            letter-spacing:normal;
             margin-top:0;
             margin-right:0;
             margin-bottom:10px;
             margin-left:0;
-            /*@editable*/ text-align:left;
+            text-align:left;
         }
 
 
         h2{
-            /*@editable*/ color:#404040 !important;
+            color:#404040 !important;
             display:block;
-            /*@editable*/ font-family:Helvetica;
-            /*@editable*/ font-size:20px;
-            /*@editable*/ font-style:normal;
-            /*@editable*/ font-weight:bold;
-            /*@editable*/ line-height:100%;
-            /*@editable*/ letter-spacing:normal;
+            font-family:Helvetica;
+            font-size:20px;
+            font-style:normal;
+            font-weight:bold;
+            line-height:100%;
+            letter-spacing:normal;
             margin-top:0;
             margin-right:0;
             margin-bottom:10px;
             margin-left:0;
-            /*@editable*/ text-align:left;
+            text-align:left;
         }
 
         h3{
-            /*@editable*/ color:#606060 !important;
+            color:#606060 !important;
             display:block;
-            /*@editable*/ font-family:Helvetica;
-            /*@editable*/ font-size:16px;
-            /*@editable*/ font-style:italic;
-            /*@editable*/ font-weight:normal;
-            /*@editable*/ line-height:100%;
-            /*@editable*/ letter-spacing:normal;
+            font-family:Helvetica;
+            font-size:16px;
+            font-style:italic;
+            font-weight:normal;
+            line-height:100%;
+            letter-spacing:normal;
             margin-top:0;
             margin-right:0;
             margin-bottom:10px;
             margin-left:0;
-            /*@editable*/ text-align:left;
+            text-align:left;
         }
 
 
         h4{
-            /*@editable*/ color:#808080 !important;
+            color:#808080 !important;
             display:block;
-            /*@editable*/ font-family:Helvetica;
-            /*@editable*/ font-size:14px;
-            /*@editable*/ font-style:italic;
-            /*@editable*/ font-weight:normal;
-            /*@editable*/ line-height:100%;
-            /*@editable*/ letter-spacing:normal;
+            font-family:Helvetica;
+            font-size:14px;
+            font-style:italic;
+            font-weight:normal;
+            line-height:100%;
+            letter-spacing:normal;
             margin-top:0;
             margin-right:0;
             margin-bottom:10px;
             margin-left:0;
-            /*@editable*/ text-align:left;
+            text-align:left;
         }
 
-        /* ========== Header Styles ========== */
+
 
         #templatePreheader{
-            /*@editable*/ background-color:#F4F4F4;
-            /*@editable*/ border-bottom:1px solid #CCCCCC;
+            background-color:#F4F4F4;
+            border-bottom:1px solid #CCCCCC;
         }
 
         .preheaderContent{
-            /*@editable*/ color:#808080;
-            /*@editable*/ font-family:Helvetica;
-            /*@editable*/ font-size:10px;
-            /*@editable*/ line-height:125%;
-            /*@editable*/ text-align:left;
+            color:#808080;
+            font-family:Helvetica;
+            font-size:10px;
+            line-height:125%;
+            text-align:left;
         }
 
-        .preheaderContent a:link, .preheaderContent a:visited, /* Yahoo! Mail Override */ .preheaderContent a .yshortcuts /* Yahoo! Mail Override */{
-            /*@editable*/ color:#606060;
-            /*@editable*/ font-weight:normal;
-            /*@editable*/ text-decoration:underline;
+        .preheaderContent a:link, .preheaderContent a:visited,  .preheaderContent a .yshortcuts {
+            color:#606060;
+            font-weight:normal;
+            text-decoration:underline;
         }
 
         #templateHeader{
-            /*@editable*/ background-color:#F4F4F4;
-            /*@editable*/ border-top:1px solid #FFFFFF;
-            /*@editable*/ border-bottom:1px solid #CCCCCC;
+            background-color:#187ac7;
+            border-top:1px solid #FFFFFF;
+            border-bottom:1px solid #CCCCCC;
         }
 
         .headerContent{
-            /*@editable*/ color:#505050;
-            /*@editable*/ font-family:Helvetica;
-            /*@editable*/ font-size:20px;
-            /*@editable*/ font-weight:bold;
-            /*@editable*/ line-height:100%;
-            /*@editable*/ padding-top:0;
-            /*@editable*/ padding-right:0;
-            /*@editable*/ padding-bottom:0;
-            /*@editable*/ padding-left:0;
-            /*@editable*/ text-align:left;
-            /*@editable*/ vertical-align:middle;
+            color:#505050;
+            font-family:Helvetica;
+            font-size:20px;
+            font-weight:bold;
+            line-height:100%;
+            padding-top:0;
+            padding-right:0;
+            padding-bottom:0;
+            padding-left:0;
+            text-align:left;
+            vertical-align:middle;
         }
 
-        .headerContent a:link, .headerContent a:visited, /* Yahoo! Mail Override */ .headerContent a .yshortcuts /* Yahoo! Mail Override */{
-            /*@editable*/ color:#EB4102;
-            /*@editable*/ font-weight:normal;
-            /*@editable*/ text-decoration:underline;
+        .headerContent a:link, .headerContent a:visited,  .headerContent a .yshortcuts {
+            color:#EB4102;
+            font-weight:normal;
+            text-decoration:underline;
         }
 
         #headerImage{
@@ -158,30 +159,30 @@
             max-width:600px;
         }
 
-        /* ========== Body Styles ========== */
+
 
         #templateBody{
-            /*@editable*/ background-color:#FFFFFF;
-            /*@editable*/ border-top:1px solid #FFFFFF;
-            /*@editable*/ border-bottom:1px solid #CCCCC8;
+            background-color:#FFFFFF;
+            border-top:1px solid #FFFFFF;
+            border-bottom:1px solid #CCCCC8;
         }
 
         .bodyContent{
-            /*@editable*/ color:#505050;
-            /*@editable*/ font-family:Helvetica;
-            /*@editable*/ font-size:14px;
-            /*@editable*/ line-height:150%;
+            color:#505050;
+            font-family:Helvetica;
+            font-size:14px;
+            line-height:150%;
             padding-top:20px;
             padding-right:20px;
             padding-bottom:20px;
             padding-left:20px;
-            /*@editable*/ text-align:left;
+            text-align:left;
         }
 
-        .bodyContent a:link, .bodyContent a:visited, /* Yahoo! Mail Override */ .bodyContent a .yshortcuts /* Yahoo! Mail Override */{
-            /*@editable*/ color:#EB4102;
-            /*@editable*/ font-weight:normal;
-            /*@editable*/ text-decoration:underline;
+        .bodyContent a:link, .bodyContent a:visited,  .bodyContent a .yshortcuts {
+            color:#EB4102;
+            font-weight:normal;
+            text-decoration:underline;
         }
 
         .bodyContent img{
@@ -190,117 +191,117 @@
             max-width:560px;
         }
 
-        /* ========== Footer Styles ========== */
+
 
         #templateFooter{
-            /*@editable*/ background-color:#187ac7;
-            /*@editable*/ border-top:1px solid #156bae;
+            background-color:#187ac7;
+            border-top:1px solid #156bae;
         }
 
         .footerContent{
-            /*@editable*/ color:#FFFFFF;
-            /*@editable*/ font-family:Helvetica;
-            /*@editable*/ font-size:10px;
-            /*@editable*/ line-height:150%;
+            color:#FFFFFF;
+            font-family:Helvetica;
+            font-size:10px;
+            line-height:150%;
             padding-top:20px;
             padding-right:20px;
             padding-bottom:20px;
             padding-left:20px;
-            /*@editable*/ text-align:left;
+            text-align:left;
         }
 
-        .footerContent a:link, .footerContent a:visited, /* Yahoo! Mail Override */ .footerContent a .yshortcuts, .footerContent a span /* Yahoo! Mail Override */{
-            /*@editable*/ color:#FFFFFF;
-            /*@editable*/ font-weight:normal;
-            /*@editable*/ text-decoration:underline;
+        .footerContent a:link, .footerContent a:visited,  .footerContent a .yshortcuts, .footerContent a span {
+            color:#FFFFFF;
+            font-weight:normal;
+            text-decoration:underline;
         }
 
-        /* /\/\/\/\/\/\/\/\/ MOBILE STYLES /\/\/\/\/\/\/\/\/ */
+
 
         @media only screen and (max-width: 480px){
-            /* /\/\/\/\/\/\/ CLIENT-SPECIFIC MOBILE STYLES /\/\/\/\/\/\/ */
-            body, table, td, p, a, li, blockquote{-webkit-text-size-adjust:none !important;} /* Prevent Webkit platforms from changing default text sizes */
-            body{width:100% !important; min-width:100% !important;} /* Prevent iOS Mail from adding padding to the body */
 
-            /* /\/\/\/\/\/\/ MOBILE RESET STYLES /\/\/\/\/\/\/ */
+            body, table, td, p, a, li, blockquote{-webkit-text-size-adjust:none !important;}
+            body{width:100% !important; min-width:100% !important;}
+
+
             #bodyCell{padding:10px !important;}
 
-            /* /\/\/\/\/\/\/ MOBILE TEMPLATE STYLES /\/\/\/\/\/\/ */
 
-            /* ======== Page Styles ======== */
+
+
 
             #templateContainer{
                 max-width:600px !important;
-                /*@editable*/ width:100% !important;
+                width:100% !important;
             }
 
             h1{
-                /*@editable*/ font-size:24px !important;
-                /*@editable*/ line-height:100% !important;
+                font-size:24px !important;
+                line-height:100% !important;
             }
 
             h2{
-                /*@editable*/ font-size:20px !important;
-                /*@editable*/ line-height:100% !important;
+                font-size:20px !important;
+                line-height:100% !important;
             }
 
             h3{
-                /*@editable*/ font-size:18px !important;
-                /*@editable*/ line-height:100% !important;
+                font-size:18px !important;
+                line-height:100% !important;
             }
 
             h4{
-                /*@editable*/ font-size:16px !important;
-                /*@editable*/ line-height:100% !important;
+                font-size:16px !important;
+                line-height:100% !important;
             }
 
-            /* ======== Header Styles ======== */
 
-            #templatePreheader{display:none !important;} /* Hide the template preheader to save space */
+
+            #templatePreheader{display:none !important;}
 
             #headerImage{
                 height:auto !important;
-                /*@editable*/ max-width:600px !important;
-                /*@editable*/ width:100% !important;
+                max-width:600px !important;
+                width:100% !important;
             }
 
             .headerContent{
-                /*@editable*/ font-size:20px !important;
-                /*@editable*/ line-height:125% !important;
+                font-size:20px !important;
+                line-height:125% !important;
             }
 
-            /* ======== Body Styles ======== */
+
 
             .bodyContent{
-                /*@editable*/ font-size:18px !important;
-                /*@editable*/ line-height:125% !important;
+                font-size:18px !important;
+                line-height:125% !important;
             }
 
-            /* ======== Footer Styles ======== */
+
 
             .footerContent{
-                /*@editable*/ font-size:14px !important;
-                /*@editable*/ line-height:115% !important;
+                font-size:14px !important;
+                line-height:115% !important;
             }
 
-            .footerContent a{display:block !important;} /* Place footer social and utility links on their own lines, for easier access */
+            .footerContent a{display:block !important;}
         }
     </style>
 </head>
-<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;height:100% !important;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;width:100% !important;background-color:#f5f5dc;" >
 <center>
-    <table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse !important;height:100% !important;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;width:100% !important;background-color:#f5f5dc;" >
         <tr>
-            <td align="center" valign="top" id="bodyCell">
+            <td align="center" valign="top" id="bodyCell" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;height:100% !important;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;width:100% !important;padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;border-top-width:4px;border-top-style:solid;border-top-color:#1f99f9;" >
                 <!-- BEGIN TEMPLATE // -->
-                <table border="0" cellpadding="0" cellspacing="0" id="templateContainer">
+                <table border="0" cellpadding="0" cellspacing="0" id="templateContainer" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse !important;width:600px;border-width:1px;border-style:solid;border-color:#BBBBBB;background-color:#187ac7;" >
                     <tr>
-                        <td align="center" valign="top">
+                        <td align="center" valign="top" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;" >
                             <!-- BEGIN HEADER // -->
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateHeader">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateHeader" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse !important;background-color:#187ac7;border-top-width:1px;border-top-style:solid;border-top-color:#FFFFFF;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#CCCCCC;" >
                                 <tr>
-                                    <td valign="top" class="headerContent">
-                                        <img src="<?php echo $message->embed(public_path()."/images/mgLogo.jpg"); ?>" style="max-width:600px;" id="headerImage" mc:label="header_image" mc:edit="header_image" mc:allowdesigner mc:allowtext />
+                                    <td valign="top" class="headerContent" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;color:#505050;font-family:Helvetica;font-size:20px;font-weight:bold;line-height:100%;padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;text-align:left;vertical-align:middle;" >
+                                        <img src="https://dl.dropboxusercontent.com/u/66220314/mgImages/mgLogo.jpg"  id="headerImage" mc:label="header_image" mc:edit="header_image" mc:allowdesigner mc:allowtext style="max-width:600px;-ms-interpolation-mode:bicubic;border-width:0;line-height:100%;outline-style:none;text-decoration:none;height:auto;" />
                                     </td>
                                 </tr>
                             </table>
@@ -308,14 +309,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="center" valign="top">
+                        <td align="center" valign="top" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;" >
                             <!-- BEGIN BODY // -->
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateBody">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateBody" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse !important;background-color:#FFFFFF;border-top-width:1px;border-top-style:solid;border-top-color:#FFFFFF;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#CCCCC8;" >
                                 <tr>
-                                    <td valign="top" class="bodyContent" mc:edit="body_content">
-                                        <h1>Join My Group</h1>
-                                        <h3><strong>{{ $username }}</strong> has invited you to join <strong>{{$group_name}}</strong> on MyGroup</h3>
-                                        <h4>To join <strong>{{$group_name}}</strong> on MyGroup.</h4>
+                                    <td valign="top" class="bodyContent" mc:edit="body_content" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;color:#505050;font-family:Helvetica;font-size:14px;line-height:150%;padding-top:20px;padding-right:20px;padding-bottom:20px;padding-left:20px;text-align:left;" >
+                                        <h1 style="color:#202020 !important;display:block;font-family:Helvetica;font-size:26px;font-style:normal;font-weight:bold;line-height:100%;letter-spacing:normal;margin-top:0;margin-right:0;margin-bottom:10px;margin-left:0;text-align:left;" >Join My Group</h1>
+                                        <h3 style="color:#606060 !important;display:block;font-family:Helvetica;font-size:16px;font-style:italic;font-weight:normal;line-height:100%;letter-spacing:normal;margin-top:0;margin-right:0;margin-bottom:10px;margin-left:0;text-align:left;" ><strong>{{ $username }}</strong> has invited you to join <strong>{{$group_name}}</strong> on MyGroup</h3>
+                                        <h4 style="color:#808080 !important;display:block;font-family:Helvetica;font-size:14px;font-style:italic;font-weight:normal;line-height:100%;letter-spacing:normal;margin-top:0;margin-right:0;margin-bottom:10px;margin-left:0;text-align:left;" >To join <strong>{{$group_name}}</strong> on MyGroup.</h4>
                                         Register using following details :<br>
                                         Email id : <strong>{{$email}}</strong> <br>
                                         Unique Code : <strong>{{ $confirmation_code }}</strong>
@@ -329,16 +330,16 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="center" valign="top">
+                        <td align="center" valign="top" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;" >
                             <!-- BEGIN FOOTER // -->
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateFooter">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateFooter" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse !important;background-color:#187ac7;border-top-width:1px;border-top-style:solid;border-top-color:#156bae;" >
                                 <tr>
-                                    <td valign="top" class="footerContent" mc:edit="footer_content00">
-                                        <a href="*|TWITTER:PROFILEURL|*">Follow on Twitter</a>&nbsp;&nbsp;&nbsp;<a href="*|FACEBOOK:PROFILEURL|*">Friend on Facebook</a>&nbsp;&nbsp;&nbsp;
+                                    <td valign="top" class="footerContent" mc:edit="footer_content00" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;color:#FFFFFF;font-family:Helvetica;font-size:10px;line-height:150%;padding-top:20px;padding-right:20px;padding-bottom:20px;padding-left:20px;text-align:left;" >
+                                        <a href="*|TWITTER:PROFILEURL|*" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;color:#FFFFFF;font-weight:normal;text-decoration:underline;" >Follow on Twitter</a>&nbsp;&nbsp;&nbsp;<a href="*|FACEBOOK:PROFILEURL|*" style="-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;color:#FFFFFF;font-weight:normal;text-decoration:underline;" >Friend on Facebook</a>&nbsp;&nbsp;&nbsp;
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td valign="top" class="footerContent" style="padding-top:0;" mc:edit="footer_content01">
+                                    <td valign="top" class="footerContent"  mc:edit="footer_content01" style="padding-top:0;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;mso-table-lspace:0pt;mso-table-rspace:0pt;color:#FFFFFF;font-family:Helvetica;font-size:10px;line-height:150%;padding-right:20px;padding-bottom:20px;padding-left:20px;text-align:left;" >
                                         <em>Copyright &copy; 2016 MyGroup, All rights reserved.</em>
                                         <br />
                                         <br />
