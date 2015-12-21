@@ -168,10 +168,19 @@ class UserController extends Controller
      *
      * @return mixed
      */
-    public function getImage()
+    public function getImage($group_id = null, $user_id = null)
     {
-        $user_id = $this->getAuthUser();
-        $file_name = $user_id->image_url;
+        $group = $this->getAuthUserGroup($group_id);
+        if(!$group)
+        {
+            return $this->respondNotFound("Group not found");
+        }
+        $user = $group->users->find($user_id);
+        if(!$user)
+        {
+            return $this->respondNotFound("User not found");
+        }
+        $file_name = $user->image_url;
 
         if($file_name === null)
         {

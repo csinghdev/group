@@ -19,7 +19,7 @@ Route::group(['prefix' => 'api/v1'], function() {
     Route::get('group/{group_id}/users', 'UserController@index');
     Route::resource('user', 'UserController', ['only' => ['store']]);
     Route::post('user/image', 'UserController@storeImage');
-    Route::get('user/image', 'UserController@getImage');
+    Route::get('group/{group_id}/user/{user_id}/image', 'UserController@getImage');
 
     Route::resource('groups', 'GroupController', ['only' => ['index', 'store', 'update']]);
     Route::get('group/{unique_code}', 'GroupController@joinGroup');
